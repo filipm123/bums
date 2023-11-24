@@ -1,0 +1,44 @@
+[debug] [2023-11-22T16:42:49.258Z] ----------------------------------------------------------------------
+[debug] [2023-11-22T16:42:49.259Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\filip\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-11-22T16:42:49.260Z] CLI Version:   12.9.1
+[debug] [2023-11-22T16:42:49.260Z] Platform:      win32
+[debug] [2023-11-22T16:42:49.260Z] Node Version:  v18.18.0
+[debug] [2023-11-22T16:42:49.261Z] Time:          Wed Nov 22 2023 17:42:49 GMT+0100 (czas środkowoeuropejski standardowy)
+[debug] [2023-11-22T16:42:49.261Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-22T16:42:49.329Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-22T16:42:49.329Z] > authorizing via signed-in user (filipor123@gmail.com)
+[debug] [2023-11-22T16:42:49.329Z] [iam] checking project bjums-a0ca0 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-11-22T16:42:49.331Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bjums-a0ca0:testIamPermissions [none]
+[debug] [2023-11-22T16:42:49.331Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bjums-a0ca0:testIamPermissions x-goog-quota-user=projects/bjums-a0ca0
+[debug] [2023-11-22T16:42:49.331Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bjums-a0ca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-11-22T16:42:50.170Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bjums-a0ca0:testIamPermissions 200
+[debug] [2023-11-22T16:42:50.170Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bjums-a0ca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-11-22T16:42:50.171Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bjums-a0ca0 [none]
+[debug] [2023-11-22T16:42:50.570Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bjums-a0ca0 200
+[debug] [2023-11-22T16:42:50.570Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bjums-a0ca0 {"projectId":"bjums-a0ca0","projectNumber":"1035189631500","displayName":"bums","name":"projects/bjums-a0ca0","resources":{"hostingSite":"bjums-a0ca0"},"state":"ACTIVE","etag":"1_fda2b852-e7d3-47ea-ab0d-d9566529b603"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[info]    ▲ Next.js 14.0.3
+
+[info] 
+   Creating an optimized production build ...
+
+[info] uncaughtException [Error: EPERM: operation not permitted, open 'C:\Users\filip\OneDrive\Desktop\bums\bums\.next\trace'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\filip\\OneDrive\\Desktop\\bums\\bums\\.next\\trace'
+}
+
+[debug] [2023-11-22T16:43:02.138Z] Error: ENOENT: no such file or directory, open 'C:\Users\filip\OneDrive\Desktop\bums\bums\.next\server\middleware-manifest.json'
+[error] 
+[error] Error: An unexpected error has occurred.
