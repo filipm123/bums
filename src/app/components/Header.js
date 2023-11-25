@@ -21,7 +21,7 @@ const Header = () => {
     setAnchorEl(null);
   };
   return (
-    <header className="h-20 p-10 pb-20 border-b-[1px] border-slate-600">
+    <header className="h-20 p-10 pb-20 border-b-[1px] border-br">
       <nav className="flex justify-between items-center">
         <div className="flex gap-12">
           <Link href="/">
