@@ -1,23 +1,22 @@
 "use client";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import app from "../../../firebase";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import Header from "./Header";
 import Link from "next/link";
+import PasswordChecklist from "react-password-checklist";
 const auth = getAuth();
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault(e);
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, username, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
@@ -29,6 +28,7 @@ const SignUp = () => {
         console.log(errorCode, errorMessage);
       });
   };
+
   return (
     <div className="flex flex-grow p-16 flex-col items-center justify-center">
       <form onSubmit={handleRegister}>
@@ -38,11 +38,20 @@ const SignUp = () => {
               Create your account
             </strong>
             <TextField
+              onChange={(e) => setUsername(e.target.value)}
+              id="outlined-basic"
+              label="Username"
+              variant="outlined"
+              size="small"
+              required
+            />
+            <TextField
               onChange={(e) => setEmail(e.target.value)}
               id="outlined-basic"
               label="Email"
               variant="outlined"
               size="small"
+              required
             />
             <TextField
               onChange={(e) => setPassword(e.target.value)}
@@ -51,7 +60,29 @@ const SignUp = () => {
               variant="outlined"
               type="password"
               size="small"
+              required
             />
+            <TextField
+              onChange={(e) => setPasswordAgain(e.target.value)}
+              id="outlined-basic"
+              label="Confirm password"
+              variant="outlined"
+              type="password"
+              size="small"
+              required
+            />
+            {password ? (
+              <PasswordChecklist
+                rules={["minLength", "number", "capital", "match"]}
+                minLength={5}
+                value={password}
+                valueAgain={passwordAgain}
+                onChange={(isValid) => {}}
+              />
+            ) : (
+              <div></div>
+            )}
+
             <Button
               type="submit"
               disableElevation

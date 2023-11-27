@@ -2,24 +2,24 @@ import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { useState, } from "react";
+import { doc, setDoc, addDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
-import MyDropzone from "./Dropzone";
+
 
 const AddProjectForm = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [cover, setCover] = useState("");
-  const [files, setFiles] = useState([]);
 
-  const addProject = () => {
-    setDoc(doc(db, "projects"), {
-      title: title,
-      author: author,
-      cover: cover,
-      files: files,
-    });
+  const addProject = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "projects"), {
+        title: title,
+        author: author,
+      });
+    } catch (error) {
+      console.error("Error uploading data: ", error);
+    }
   };
 
   const style = {
@@ -40,16 +40,18 @@ const AddProjectForm = () => {
         <TextField
           id="outlined-basic"
           label="Project name"
+          F
           variant="outlined"
           className="w-full"
+          onChange={(e) => setTitle(e.target.value)}
         />
         <TextField
           id="outlined-basic"
           label="Artist"
           variant="outlined"
           className="w-full"
+          onChange={(e) => setAuthor(e.target.value)}
         />
-        <MyDropzone />
         <Button className="w-full" type="submit" variant="contained">
           Add
         </Button>

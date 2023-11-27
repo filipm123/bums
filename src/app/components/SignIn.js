@@ -21,7 +21,7 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        redirect('/dashboard')
         
       })
       .catch((error) => {
