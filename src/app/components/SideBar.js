@@ -6,12 +6,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import AlbumIcon from "@mui/icons-material/Album";
-import AddIcon from "@mui/icons-material/Add";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
-import Modal from "@mui/material/Modal";
-import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
@@ -19,11 +16,13 @@ import { collection, query, getDocs, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import AddProjectForm from "./AddProjectForm";
 
-const SideBar = () => {
+const SideBar = ({forceUpdate}) => {
   const [open, setOpen] = React.useState(true);
   const [data, setData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  
   const { currentUser } = useContext(UserContext);
+  
   const router = useRouter();
   const handleClick = () => {
     setOpen(!open);
@@ -34,7 +33,10 @@ const SideBar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const q = query(collection(db, "projects"), where("owner", "==", currentUser.uid));
+        const q = query(
+          collection(db, "projects"),
+          where("owner", "==", currentUser.uid)
+        );
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -47,7 +49,7 @@ const SideBar = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [  ]);
 
   return (
     <List
@@ -56,20 +58,8 @@ const SideBar = () => {
       aria-labelledby="nested-list-subheader"
       className="border-solid border-2 border-black"
     >
-      <ListItemButton onClick={handleOpen}>
-        <ListItemIcon>
-          <AddIcon />
-        </ListItemIcon>
-        <ListItemText primary="Add Project"></ListItemText>
-      </ListItemButton>
-      <Modal
-        open={modalOpen}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedb2y="modal-modal-description"
-      >
-        <AddProjectForm />
-      </Modal>
+      <AddProjectForm />
+
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
           <AlbumIcon />

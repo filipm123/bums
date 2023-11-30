@@ -14,7 +14,7 @@ const Project = () => {
     const fetchData = async () => {
       try {
         const projectsRef = query(collection(db, "projects"));
-        const q = query(projectsRef, where("__name__", "==", id));
+        const q = query(projectsRef, where("__name__", "==", id));  
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
