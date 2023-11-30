@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <html className="flex flex-col min-h-screen" lang="en">
+        <html className="flex flex-col h-full" lang="en">
           <body className={inter.className}>
             <Header />
             {children}

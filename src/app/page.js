@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="gap-12 flex justify-center flex-col items-center flex-grow text-center text-5xl">
       <div>
-        <strong>BUMS: </strong> an easy way to organise your wip projects!
+        <strong>BUMS: </strong> an easy way to manage your wip albums!
       </div>
       <Link href="/dashboard">
         {" "}

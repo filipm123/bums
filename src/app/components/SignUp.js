@@ -1,14 +1,20 @@
 "use client";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { useState } from "react";
 import Card from "@mui/material/Card";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 import PasswordChecklist from "react-password-checklist";
+import { useRouter } from "next/navigation";
 const auth = getAuth();
 
 const SignUp = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -16,11 +22,16 @@ const SignUp = () => {
 
   const handleRegister = (e) => {
     e.preventDefault(e);
-    createUserWithEmailAndPassword(auth, email, username, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        redirect("/dashboard");
+        console.log(user.uid);
+        const auth = getAuth();
+        updateProfile(auth.currentUser, {
+          displayName: username,
+        }).then(() => {
+          router.push("/dashboard");
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -40,7 +51,7 @@ const SignUp = () => {
             <TextField
               onChange={(e) => setUsername(e.target.value)}
               id="outlined-basic"
-              label="Username"
+              label="Username "
               variant="outlined"
               size="small"
               required

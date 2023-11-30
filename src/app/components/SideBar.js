@@ -10,32 +10,20 @@ import AddIcon from "@mui/icons-material/Add";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
-import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { collection, query, getDocs } from "firebase/firestore";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../Context/UserContext";
+import { collection, query, getDocs, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import AddProjectForm from "./AddProjectForm";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: '#08070B',
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 8,
-};
 
 const SideBar = () => {
   const [open, setOpen] = React.useState(true);
   const [data, setData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const { currentUser } = useContext(UserContext);
   const router = useRouter();
   const handleClick = () => {
     setOpen(!open);
@@ -46,7 +34,7 @@ const SideBar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const q = query(collection(db, "projects"));
+        const q = query(collection(db, "projects"), where("owner", "==", currentUser.uid));
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -99,6 +87,7 @@ const SideBar = () => {
                 })
               }
               sx={{ pl: 4 }}
+              key={item}
             >
               <ListItemIcon>
                 <StarBorder />

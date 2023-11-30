@@ -9,7 +9,9 @@ import app from "../../../firebase";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import React from "react";
+import { useRouter } from "next/navigation";
 const Header = () => {
+  const router = useRouter();
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,6 +21,10 @@ const Header = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    auth.signOut();
+    router.push("/");
   };
   return (
     <header className="h-20 p-10 pb-20 border-b-[1px] border-br">
@@ -54,7 +60,7 @@ const Header = () => {
                 }}
               >
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={() => auth.signOut()}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
           </>

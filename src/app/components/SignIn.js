@@ -9,10 +9,11 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Header from "./Header";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 const auth = getAuth();
 
 const SignIn = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,8 +22,7 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        redirect('/dashboard')
-        
+        router.push("/dashboard");
       })
       .catch((error) => {
         const errorCode = error.code;
