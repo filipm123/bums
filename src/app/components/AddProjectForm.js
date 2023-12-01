@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -11,7 +11,7 @@ import { useState, useContext } from "react";
 import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { UserContext } from "../Context/UserContext";
-
+import { useRouter } from "next/navigation";
 
 const style = {
   position: "absolute",
@@ -20,9 +20,10 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "#08070B",
-  border: "2px solid #000",
+  border: "1px solid #545363",
+  borderRadius: 2,
   boxShadow: 24,
-  p: 8,
+  p: 4,
 };
 
 const AddProjectForm = () => {
@@ -42,8 +43,7 @@ const AddProjectForm = () => {
       });
       setTitle("");
       setModalOpen(false);
-      this.forceUpdate()
-      
+      this.forceUpdate(); 
     } catch (error) {
       console.error("Error uploading data: ", error);
     }
@@ -66,7 +66,7 @@ const AddProjectForm = () => {
       >
         <form onSubmit={addProject}>
           <Box className="rounded flex items-center flex-col gap-4" sx={style}>
-            <h1 className="text-center font-bold text-2xl">Add project</h1>
+            <h1 className="p-4 text-center font-bold text-2xl">Add project</h1>
             <TextField
               id="outlined-basic"
               label="Project name"
@@ -76,8 +76,21 @@ const AddProjectForm = () => {
               onChange={(e) => setTitle(e.target.value)}
               required
             />
-            <Button className="w-full" type="submit" variant="contained">
-              Add
+            <Button
+              sx={{
+                borderColor: "#545363",
+                color: "#545363",
+                width: 1 ,  
+                ":hover": {
+                  borderColor: "#8785AF",
+                
+                },
+               
+              }}
+              type="submit"
+              variant="outlined"
+            >
+              Add project
             </Button>
           </Box>
         </form>

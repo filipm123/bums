@@ -10,6 +10,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import React from "react";
 import { useRouter } from "next/navigation";
+const style = {
+  width: 400,
+  bgcolor: "#08070B",
+  border: "1px solid #545363",
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 4,
+};
 const Header = () => {
   const router = useRouter();
   const auth = getAuth();

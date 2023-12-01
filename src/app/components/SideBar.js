@@ -16,19 +16,15 @@ import { collection, query, getDocs, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import AddProjectForm from "./AddProjectForm";
 
-const SideBar = ({forceUpdate}) => {
+const SideBar = ({ forceUpdate }) => {
   const [open, setOpen] = React.useState(true);
   const [data, setData] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  
+  const [triggerFetchProjects, setTriggerFetchProjects] = useState(true);
   const { currentUser } = useContext(UserContext);
-  
   const router = useRouter();
   const handleClick = () => {
     setOpen(!open);
   };
-  const handleOpen = () => setModalOpen(true);
-  const handleClose = () => setModalOpen(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,18 +34,17 @@ const SideBar = ({forceUpdate}) => {
           where("owner", "==", currentUser.uid)
         );
         const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc) => ({
+        const newData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setData(data);
-        console.log(data);
+        setData((prevData) => [...newData]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
-  }, [  ]);
+  }, [data]);
 
   return (
     <List
