@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { AuthProvider } from "./Context/UserContext";
-
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,6 +17,9 @@ export default function RootLayout({ children }) {
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <html className="flex flex-col h-full" lang="en">
+          <head>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" />
+          </head>
           <body className={inter.className}>
             <Header />
             {children}
