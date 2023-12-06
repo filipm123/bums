@@ -37,7 +37,6 @@ const SideBar = ({ forceUpdate }) => {
         ...doc.data(),
       }));
       setData((prevData) => [...newData]);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

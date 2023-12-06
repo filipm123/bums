@@ -6,24 +6,26 @@ import {
   where,
   deleteDoc,
   doc,
+  updateDoc
 } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { db } from "../../../firebase";
 import { useEffect, useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { useParams } from "next/navigation";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
-import FileUpload from "./FileUpload";
 import AddTracks from "./AddTracks";
+import { FileUploader } from "react-drag-drop-files";
 const Project = () => {
+  const storage = getStorage();
   const router = useRouter();
   const [data, setData] = useState([]);
   const params = useParams();
   const id = params.projectid;
   const [loading, setLoading] = useState(true);
-
+  const fileTypes = ["JPG", "PNG", "GIF"];
   const style = {
     position: "absolute",
     top: "50%",
@@ -39,6 +41,7 @@ const Project = () => {
 
   const [addOpen, setAddOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+
   const handleDeleteOpen = () => setDeleteOpen(true);
   const handleDeleteClose = () => setDeleteOpen(false);
   const handleAddOpen = () => setAddOpen(true);
@@ -61,6 +64,21 @@ const Project = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const [cover, setCover] = useState(null);
+  const handleCoverChange = (cover) => {
+    setCover(cover);
+    const coverRef = ref(storage, `covers/${cover.name}`);
+    const projectRef = doc(db, "projects", id);
+    uploadBytes(coverRef, cover).then((snapshot) => {
+      getDownloadURL(coverRef).then((url) =>
+        updateDoc(projectRef, { cover: url }).then(fetchData())
+        
+      );
+      console.log("Cover uploaded");
+      
+    });
+  };
 
   const handleDelete = async () => {
     const projectRef = doc(db, "projects", id);
@@ -93,15 +111,25 @@ const Project = () => {
                     src={item.cover}
                   />
                 ) : (
-                  <div>
-                    <img
-                      className="object-scale-down h-72 w-72"
-                      src={item.cover}
-                    />
-                    <div className="absolute top-[286px] left-[475px] underline">
-                      Upload artwork
-                    </div>
-                  </div>
+                  <FileUploader
+                    handleChange={handleCoverChange}
+                    name="file"
+                    types={fileTypes}
+                    children={
+                      <>
+                        <div>
+                          <img
+                            className="object-scale-down h-72 w-72"
+                            src={item.cover}
+                          />
+
+                          <div className="absolute top-[140px] right-[22px] underline">
+                            Drag and drop your artwork here
+                          </div>
+                        </div>
+                      </>
+                    }
+                  />
                 )}
               </div>
 
@@ -143,7 +171,7 @@ const Project = () => {
               variant="outlined"
               onClick={handleAddOpen}
             >
-              Upload audio files
+              Upload audio files wip
             </Button>
             <Modal
               open={deleteOpen}
@@ -188,7 +216,11 @@ const Project = () => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <AddTracks handleAddClose={handleAddClose} fetchData={fetchData} id={id} />
+              <AddTracks
+                handleAddClose={handleAddClose}
+                fetchData={fetchData}
+                id={id}
+              />
             </Modal>
           </div>
         ))}
