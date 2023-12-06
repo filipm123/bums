@@ -1,4 +1,9 @@
+
 import SignUp from "../components/SignUp";
 export default function SignUpPage() {
-  return <SignUp />;
+  return (
+    <div className="flex flex-grow" id="vanta">
+      <SignUp />
+    </div>
+  );
 }

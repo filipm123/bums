@@ -9,9 +9,9 @@ export const UserContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  useEffect(() => {
+  useEffect(() => { 
     auth.onAuthStateChanged(setCurrentUser);
-    console.log('Current user:', currentUser);
+    console.log("Current user:", currentUser);
   }, [currentUser]);
 
   return (

@@ -12,7 +12,15 @@ import Link from "next/link";
 import PasswordChecklist from "react-password-checklist";
 import { useRouter } from "next/navigation";
 const auth = getAuth();
-
+const style = {
+ 
+  width: 400,
+  bgcolor: "#08070B",
+  border: "1px solid #545363",
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 1,
+};
 const SignUp = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -43,8 +51,8 @@ const SignUp = () => {
   return (
     <div className="flex flex-grow p-16 flex-col items-center justify-center">
       <form onSubmit={handleRegister}>
-        <Card variant="outlined">
-          <div className="flex  flex-col w-112 gap-4 p-16">
+        <Card sx={style} variant="outlined">
+          <div className="flex  flex-col w-112 gap-4 p-10">
             <strong className="text-2xl mb-4 text-center">
               Create your account
             </strong>
@@ -104,7 +112,7 @@ const SignUp = () => {
               Create account
             </Button>
           </div>
-          <div className="text-center pb-12 ">
+          <div className="text-center pb-6 ">
             Already have an account?
             <Link href="/signin">
               <div className="underline">Sign in</div>

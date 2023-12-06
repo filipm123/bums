@@ -25,26 +25,27 @@ const SideBar = ({ forceUpdate }) => {
   const handleClick = () => {
     setOpen(!open);
   };
+  const fetchData = async () => {
+    try {
+      const q = query(
+        collection(db, "projects"),
+        where("owner", "==", currentUser.uid)
+      );
+      const querySnapshot = await getDocs(q);
+      const newData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setData((prevData) => [...newData]);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const q = query(
-          collection(db, "projects"),
-          where("owner", "==", currentUser.uid)
-        );
-        const querySnapshot = await getDocs(q);
-        const newData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setData((prevData) => [...newData]);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchData();
-  }, [data]);
+  }, []);
 
   return (
     <List
@@ -53,7 +54,7 @@ const SideBar = ({ forceUpdate }) => {
       aria-labelledby="nested-list-subheader"
       className="border-solid border-2 border-black"
     >
-      <AddProjectForm />
+      <AddProjectForm fetchData={fetchData} />
 
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>

@@ -11,6 +11,15 @@ import Header from "./Header";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 const auth = getAuth();
+const style = {
+ 
+  width: 400,
+  bgcolor: "#08070B",
+  border: "1px solid #545363",
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 1,
+};
 
 const SignIn = () => {
   const router = useRouter();
@@ -33,8 +42,8 @@ const SignIn = () => {
   return (
     <div className="flex flex-grow flex-col items-center justify-center">
       <form onSubmit={handleSignIn}>
-        <Card variant="outlined">
-          <div className="flex  flex-col w-112 gap-4 p-16">
+        <Card sx={style} variant="outlined">
+          <div className="flex  flex-col w-112 gap-4 p-10">
             <strong className="text-2xl mb-4 text-center">Sign in</strong>
             <TextField
               onChange={(e) => setEmail(e.target.value)}

@@ -8,10 +8,9 @@ import ListItemText from "@mui/material/ListItemText";
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
 import { useState, useContext } from "react";
-import { doc, setDoc, addDoc, collection } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { UserContext } from "../Context/UserContext";
-import { useRouter } from "next/navigation";
 
 const style = {
   position: "absolute",
@@ -26,7 +25,7 @@ const style = {
   p: 4,
 };
 
-const AddProjectForm = () => {
+const AddProjectForm = ({ fetchData }) => {
   const [title, setTitle] = useState("");
   const { currentUser } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
@@ -40,10 +39,11 @@ const AddProjectForm = () => {
         title: title,
         owner: currentUser.uid,
         author: currentUser.displayName,
+        tracks: [],
       });
       setTitle("");
       setModalOpen(false);
-      this.forceUpdate(); 
+      fetchData();
     } catch (error) {
       console.error("Error uploading data: ", error);
     }
@@ -80,12 +80,10 @@ const AddProjectForm = () => {
               sx={{
                 borderColor: "#545363",
                 color: "#545363",
-                width: 1 ,  
+                width: 1,
                 ":hover": {
                   borderColor: "#8785AF",
-                
                 },
-               
               }}
               type="submit"
               variant="outlined"
