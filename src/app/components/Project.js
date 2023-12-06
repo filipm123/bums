@@ -6,7 +6,7 @@ import {
   where,
   deleteDoc,
   doc,
-  updateDoc
+  updateDoc,
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { db } from "../../../firebase";
@@ -18,6 +18,8 @@ import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import AddTracks from "./AddTracks";
 import { FileUploader } from "react-drag-drop-files";
+import TrackList from "./TrackList";
+import Divider from "@mui/material/Divider";
 const Project = () => {
   const storage = getStorage();
   const router = useRouter();
@@ -73,10 +75,8 @@ const Project = () => {
     uploadBytes(coverRef, cover).then((snapshot) => {
       getDownloadURL(coverRef).then((url) =>
         updateDoc(projectRef, { cover: url }).then(fetchData())
-        
       );
       console.log("Cover uploaded");
-      
     });
   };
 
@@ -100,79 +100,93 @@ const Project = () => {
     );
   } else {
     return (
-      <div className="overflow-auto w-full h-full flex p-8 bg-bg">
+      <div className="w-full p-10 bg-bg">
         {data.map((item) => (
-          <div className=" w-full gap-8 flex flex-col" key={item.id}>
-            <div className="flex gap-6">
-              <div>
-                {item.cover ? (
-                  <img
-                    className="rounded object-scale-down h-72 w-72"
-                    src={item.cover}
-                  />
-                ) : (
-                  <FileUploader
-                    handleChange={handleCoverChange}
-                    name="file"
-                    types={fileTypes}
-                    children={
-                      <>
-                        <div>
-                          <img
-                            className="object-scale-down h-72 w-72"
-                            src={item.cover}
-                          />
+          <div className="w-full gap-10 flex flex-col" key={item.id}>
+            <div className="w-full flex justify-between gap-6">
+              <div className='flex gap-4'>
+                <div>
+                  {item.cover ? (
+                    <img
+                      className="rounded object-scale-down h-72 w-72"
+                      src={item.cover}
+                    />
+                  ) : (
+                    <FileUploader
+                      handleChange={handleCoverChange}
+                      name="file"
+                      types={fileTypes}
+                      children={
+                        <>
+                          <div>
+                            <img
+                              className="object-scale-down h-72 w-72"
+                              src={item.cover}
+                            />
 
-                          <div className="absolute top-[140px] right-[22px] underline">
-                            Drag and drop your artwork here
+                            <div className="absolute top-[140px] right-[22px] underline">
+                              Drag and drop your artwork here
+                            </div>
                           </div>
-                        </div>
-                      </>
-                    }
-                  />
-                )}
-              </div>
+                        </>
+                      }
+                    />
+                  )}
+                </div>
 
-              <div className="mt-44 text-3xl font-bold">
-                <p className="text-sm font-light text-stone-500">album</p>
-                {item.title}
-                <p className="font-normal mt-4">{item.author}</p>
+                <div className="mt-44 text-3xl font-bold">
+                  <p className="text-sm font-light text-stone-500">album</p>
+                  {item.title}
+                  <p className="font-normal mt-4">{item.author}</p>
+                </div>
               </div>
+              <span className="flex gap-3 ">
+                <Button
+                  className="h-10 p-4"
+                  variant="outlined"
+                  color="error"
+                  onClick={handleDeleteOpen}
+                >
+                  Delete
+                </Button>
+                <Button
+                  className="h-10 p-4"
+                  variant="outlined"
+                  onClick={handleAddOpen}
+                >
+                  Add tracks
+                </Button>
+                <Button
+                  className="h-10 p-4"
+                  variant="outlined"
+                  onClick={handleAddOpen}
+                >
+                  Upload audio files wip
+                </Button>
+              </span>
             </div>
-            <div className="flex flex-col gap-2">
-              {item.tracks &&
-                item.tracks.map((track) => (
-                  <div
-                    className="w-full py-4 pl-4 border-2 rounded border-br"
-                    key={track.id}
-                  >
-                    {track}
+            <div className="flex flex-col gap-4">
+              <div>
+                <div className="text-neutral-600 flex gap-2 justify-between p-2">
+                  <p>track name</p>
+                  <div className="flex gap-5">
+                    <p>status</p>
+                    <p>last changed</p>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                   </div>
-                ))}
+                </div>
+
+                <Divider></Divider>
+              </div>
+              <TrackList item={item} />
             </div>
 
-            <Button
-              className="right-[48px] w-24 absolute"
-              variant="outlined"
-              color="error"
-              onClick={handleDeleteOpen}
-            >
-              Delete
-            </Button>
-            <Button
-              className="right-[155px] w-26 absolute"
-              variant="outlined"
-              onClick={handleAddOpen}
-            >
-              Add tracks
-            </Button>
-            <Button
-              className="right-[292px] w-26 absolute"
-              variant="outlined"
-              onClick={handleAddOpen}
-            >
-              Upload audio files wip
-            </Button>
             <Modal
               open={deleteOpen}
               onClose={handleDeleteClose}

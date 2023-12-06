@@ -10,14 +10,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import React from "react";
 import { useRouter } from "next/navigation";
-const style = {
-  width: 400,
-  bgcolor: "#08070B",
-  border: "1px solid #545363",
-  borderRadius: 2,
-  boxShadow: 24,
-  p: 4,
-};
 const Header = () => {
   const router = useRouter();
   const auth = getAuth();
@@ -35,7 +27,7 @@ const Header = () => {
     router.push("/");
   };
   return (
-    <header className="h-20 p-10 pb-20 border-b-[1px] border-br">
+    <header className="h-20 p-10 pb-20 bg-black border-b-[1px] border-br">
       <nav className="flex justify-between items-center">
         <div className="flex gap-12">
           <Link href="/">

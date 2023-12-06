@@ -51,6 +51,7 @@ const SignIn = () => {
               label="Email"
               variant="outlined"
               size="small"
+              required
             />
             <TextField
               onChange={(e) => setPassword(e.target.value)}
@@ -59,6 +60,7 @@ const SignIn = () => {
               variant="outlined"
               type="password"
               size="small"
+              required
             />
             <Button
               type="submit"
