@@ -104,7 +104,7 @@ const Project = () => {
         {data.map((item) => (
           <div className="w-full gap-10 flex flex-col" key={item.id}>
             <div className="w-full flex justify-between gap-6">
-              <div className='flex gap-4'>
+              <div className="flex gap-4">
                 <div>
                   {item.cover ? (
                     <img
@@ -155,13 +155,6 @@ const Project = () => {
                   onClick={handleAddOpen}
                 >
                   Add tracks
-                </Button>
-                <Button
-                  className="h-10 p-4"
-                  variant="outlined"
-                  onClick={handleAddOpen}
-                >
-                  Upload audio files wip
                 </Button>
               </span>
             </div>
