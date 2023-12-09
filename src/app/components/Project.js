@@ -16,14 +16,17 @@ import Box from "@mui/material/Box";
 import { useParams } from "next/navigation";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
-import AddTracks from "./AddTracks";
+import AddTracks from "./AddTrackForm";
 import { FileUploader } from "react-drag-drop-files";
 import TrackList from "./TrackList";
 import Divider from "@mui/material/Divider";
+import { UserContext } from "../Context/UserContext";
 const Project = () => {
+  const { currentUser } = useContext(UserContext);
   const storage = getStorage();
   const router = useRouter();
   const [data, setData] = useState([]);
+  const [tracksData, setTracksData] = useState([]);
   const params = useParams();
   const id = params.projectid;
   const [loading, setLoading] = useState(true);
@@ -63,6 +66,7 @@ const Project = () => {
       console.error("Error fetching data:", error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -82,7 +86,9 @@ const Project = () => {
 
   const handleDelete = async () => {
     const projectRef = doc(db, "projects", id);
+
     await deleteDoc(projectRef);
+  
     handleDeleteClose();
     router.push("/dashboard");
   };
@@ -177,7 +183,7 @@ const Project = () => {
 
                 <Divider></Divider>
               </div>
-              <TrackList item={item} />
+              <TrackList id={id} />
             </div>
 
             <Modal
@@ -227,6 +233,7 @@ const Project = () => {
                 handleAddClose={handleAddClose}
                 fetchData={fetchData}
                 id={id}
+                currentUser={currentUser}
               />
             </Modal>
           </div>

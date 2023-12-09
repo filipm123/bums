@@ -3,12 +3,19 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
-import { doc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  addDoc,
+  updateDoc,
+  arrayUnion,
+  collection,
+} from "firebase/firestore";
 import { db } from "../../../firebase";
 
 import { useState } from "react";
 
-const AddTracks = ({ id, fetchData, handleAddClose }) => {
+const AddTracks = ({ id, handleAddClose, currentUser, }) => {
   const [trackTitle, setTrackTitle] = useState("");
   const projectRef = doc(db, "projects", id);
   const style = {
@@ -29,8 +36,13 @@ const AddTracks = ({ id, fetchData, handleAddClose }) => {
     await updateDoc(projectRef, {
       tracks: arrayUnion(trackTitle),
     });
+    const docRef = await addDoc(collection(db, "tracks"), {
+      trackName: trackTitle,
+      projectId: id,
+      owner: currentUser.uid,
+    });
     handleAddClose();
-    fetchData();
+
   };
   return (
     <>
