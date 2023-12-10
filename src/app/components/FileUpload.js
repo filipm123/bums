@@ -4,8 +4,8 @@ import { Button, List, ListItem, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import LinearProgress from "@mui/material/LinearProgress";
 import CircularProgress from "@mui/material/CircularProgress";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
+
 import { useState, useRef } from "react";
 import { createContext } from "react";
 import {
@@ -53,7 +53,6 @@ const FileUpload = () => {
     width: 1,
   });
 
-  const toastId = useRef(null);
   const [files, setFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const metadata = { contentType: "audio/wav" };
@@ -163,19 +162,6 @@ const FileUpload = () => {
         <h1>Uploading files...</h1>{" "}
         <CircularProgress variant="determinate" value={uploadProgress} />
       </Box>
-
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </>
   );
 };
