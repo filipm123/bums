@@ -5,7 +5,6 @@ import { styled } from "@mui/material/styles";
 import LinearProgress from "@mui/material/LinearProgress";
 import CircularProgress from "@mui/material/CircularProgress";
 
-
 import { useState, useRef } from "react";
 import { createContext } from "react";
 import {
@@ -91,16 +90,6 @@ const FileUpload = () => {
             const projectRef = doc(db, "projects", id);
             updateDoc(projectRef, {
               tracks: trackUrls,
-            });
-            toast.success("Uploaded successfully!", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
             });
           }
         }
