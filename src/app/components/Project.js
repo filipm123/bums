@@ -88,7 +88,7 @@ const Project = () => {
     const projectRef = doc(db, "projects", id);
 
     await deleteDoc(projectRef);
-  
+
     handleDeleteClose();
     router.push("/dashboard");
   };

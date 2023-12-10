@@ -32,7 +32,7 @@ const AddTracks = ({ id, handleAddClose, currentUser, }) => {
   };
 
   const handleAddTrack = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     await updateDoc(projectRef, {
       tracks: arrayUnion(trackTitle),
     });
