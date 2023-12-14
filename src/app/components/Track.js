@@ -1,9 +1,12 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import { createContext } from "react";
 import { collection, query, getDocs, where } from "firebase/firestore";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Divider } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Menu from "@mui/material/Menu";
@@ -14,15 +17,15 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import FileUpload from "./FileUpload";
+import Player from "./Player";
 import { db } from "../../../firebase";
 
-
-
 const Track = () => {
+  const [url, setUrl] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-
+  const regexPattern = /\/tracks%2F([^\/]+\.wav)\?/;
   const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,11 +40,10 @@ const Track = () => {
     setAnchorEl(null);
   };
 
-  console.log(id);
   const fetchData = async () => {
     try {
-      const projectsRef = query(collection(db, "tracks"));
-      const q = query(projectsRef, where("__name__", "==", id));
+      const tracksRef = query(collection(db, "tracks"));
+      const q = query(tracksRef, where("__name__", "==", id));
       const querySnapshot = await getDocs(q);
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -49,7 +51,6 @@ const Track = () => {
       }));
       setData(data);
       setLoading(false);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -73,7 +74,7 @@ const Track = () => {
     );
   } else {
     return (
-      <div className="p-8 flex-grow flex items-center justify-center">
+      <div className="p-8 flex-grow flex flex-col items-center justify-center">
         {data.map((track) => (
           <div className="gap-12 flex flex-col h-[100%] w-[100%] rounded-xl border-[1px] border-br p-8">
             <div className="w-full flex justify-between items-center">
@@ -83,8 +84,7 @@ const Track = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <FileUpload />
-          
+                <FileUpload id={id} />
               </Modal>
               <ChevronLeftIcon
                 className="cursor-grab"
@@ -125,19 +125,31 @@ const Track = () => {
                 <p className="mb-2 font-light text-neutral-400">Notes</p>
                 <Note />
               </div>
-              <div className="w-full flex justify-between p-6">
+              <div className="w-full flex flex-col justify-between p-6">
                 <p className="mb-2 font-light text-neutral-400">File name</p>
+                {track.audioFiles &&
+                  track.audioFiles.map((file) => (
+                    <div
+                      onClick={() => setUrl(file)}
+                      key={file}
+                      className="cursor-grab mb-2 flex justify-between items-center w-full rounded border-[1px] hover:border-[#3d364d] hover:bg-[#3d364d] border-br p-4"
+                    >
+                      <p>
+                        {file.match(regexPattern)
+                          ? decodeURIComponent(file.match(regexPattern)[1])
+                          : file}
+                      </p>
+                    </div>
+                  ))}
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
-                <p className="mb-2 font-light text-neutral-400">Uploaded</p>
-
-                <Divider></Divider>
               </div>
             </div>
+            <Player url={url} />
           </div>
         ))}
       </div>

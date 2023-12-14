@@ -52,7 +52,7 @@ const AddProjectForm = ({ fetchData }) => {
   return (
     <div>
       {" "}
-      <ListItemButton onClick={handleOpen}>
+      <ListItemButton onClick={handleOpen} disableRipple>
         <ListItemIcon>
           <AddIcon />
         </ListItemIcon>

@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.10",
     "react-dropzone": "^14.2.3",
+    "react-h5-audio-player": "^3.9.0",
     "react-password-checklist": "^1.5.0",
     "reactstrap": "^9.2.1",
     "scrollable-component": "^1.2.1",

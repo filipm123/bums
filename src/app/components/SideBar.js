@@ -16,15 +16,15 @@ import { collection, query, getDocs, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import AddProjectForm from "./AddProjectForm";
 
-const SideBar = ({ forceUpdate }) => {
-  const [open, setOpen] = React.useState(true);
+const SideBar = () => {
+  const [open, setOpen] = useState(true);
   const [data, setData] = useState([]);
-  const [triggerFetchProjects, setTriggerFetchProjects] = useState(true);
   const { currentUser } = useContext(UserContext);
   const router = useRouter();
   const handleClick = () => {
     setOpen(!open);
   };
+
   const fetchData = async () => {
     try {
       const q = query(
@@ -55,7 +55,7 @@ const SideBar = ({ forceUpdate }) => {
     >
       <AddProjectForm fetchData={fetchData} />
 
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} disableRipple>
         <ListItemIcon>
           <AlbumIcon />
         </ListItemIcon>

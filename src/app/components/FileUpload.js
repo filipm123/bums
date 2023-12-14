@@ -2,11 +2,9 @@
 import Box from "@mui/material/Box";
 import { Button, List, ListItem, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import LinearProgress from "@mui/material/LinearProgress";
-import CircularProgress from "@mui/material/CircularProgress";
 
+import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useRef } from "react";
-import { createContext } from "react";
 import {
   getStorage,
   ref,
@@ -22,12 +20,12 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { storage } from "firebase.js";
-import { useParams } from "next/navigation";
 
-const FileUpload = () => {
+const FileUpload = ({ id }) => {
   const style = {
     position: "absolute",
     top: "50%",
@@ -55,12 +53,10 @@ const FileUpload = () => {
   const [files, setFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const metadata = { contentType: "audio/wav" };
-  const params = useParams();
-  const id = params.projectid;
   const storage = getStorage();
 
   const uploadFiles = async () => {
-    const trackUrls = [];
+    const tracks = [];
     for (const file of files) {
       const fileRef = ref(storage, `tracks/${file.name}`);
       const uploadTask = uploadBytesResumable(fileRef, file, metadata);
@@ -85,13 +81,9 @@ const FileUpload = () => {
         },
         async () => {
           const downloadUrl = await getDownloadURL(fileRef);
-          trackUrls.push(downloadUrl);
-          if (trackUrls.length === files.length) {
-            const projectRef = doc(db, "projects", id);
-            updateDoc(projectRef, {
-              tracks: trackUrls,
-            });
-          }
+          const tracksRef = doc(db, "tracks", id);
+
+          updateDoc(tracksRef, { audioFiles: arrayUnion(downloadUrl) });
         }
       );
     }

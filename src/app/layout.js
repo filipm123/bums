@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import Player from "./components/Player";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { AuthProvider } from "./Context/UserContext";

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Note = () => {
   return (
     <div className="overflow-auto w-full">
