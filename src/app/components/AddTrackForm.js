@@ -15,7 +15,7 @@ import { db } from "../../../firebase";
 
 import { useState } from "react";
 
-const AddTracks = ({ id, handleAddClose, currentUser, }) => {
+const AddTracks = ({ fetchTrackListData, id, handleClose, currentUser }) => {
   const [trackTitle, setTrackTitle] = useState("");
   const projectRef = doc(db, "projects", id);
   const style = {
@@ -32,17 +32,22 @@ const AddTracks = ({ id, handleAddClose, currentUser, }) => {
   };
 
   const handleAddTrack = async (e) => {
-    e.preventDefault(); 
-    await updateDoc(projectRef, {
-      tracks: arrayUnion(trackTitle),
-    });
-    const docRef = await addDoc(collection(db, "tracks"), {
-      trackName: trackTitle,
-      projectId: id,
-      owner: currentUser.uid,
-    });
-    handleAddClose();
+    e.preventDefault();
+    try {
+      await updateDoc(projectRef, {
+        tracks: arrayUnion(trackTitle),
+      });
+      const docRef = await addDoc(collection(db, "tracks"), {
+        trackName: trackTitle,
+        projectId: id,
+        owner: currentUser.uid,
+      });
 
+      fetchTrackListData();
+      handleClose();
+    } catch (error) {
+      console.error("Error adding track: ", error);
+    }
   };
   return (
     <>

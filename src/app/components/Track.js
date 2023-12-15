@@ -19,6 +19,7 @@ import Modal from "@mui/material/Modal";
 import FileUpload from "./FileUpload";
 import Player from "./Player";
 import { db } from "../../../firebase";
+import { doc, deleteDoc } from "firebase/firestore";
 
 const Track = () => {
   const [url, setUrl] = useState("");
@@ -60,7 +61,13 @@ const Track = () => {
     fetchData();
   }, []);
 
-  const deleteTrack = async () => {};
+  const deleteTrack = async () => {
+    await deleteDoc(doc(db, "tracks", id));
+    router.push(`/dashboard/projects/${params.projectid}`, {
+      shallow: true,
+    });
+    handleClose();
+  };
   if (loading) {
     return (
       <div className="flex flex-grow items-center justify-center">
@@ -76,7 +83,10 @@ const Track = () => {
     return (
       <div className="p-8 flex-grow flex flex-col items-center justify-center">
         {data.map((track) => (
-          <div className="gap-12 flex flex-col h-[100%] w-[100%] rounded-xl border-[1px] border-br p-8">
+          <div
+            key={track}
+            className="gap-12 flex flex-col h-[100%] w-[100%] rounded-xl border-[1px] border-br p-8"
+          >
             <div className="w-full flex justify-between items-center">
               <Modal
                 open={openModal}
@@ -84,7 +94,11 @@ const Track = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <FileUpload id={id} />
+                <FileUpload
+                  handleCloseModal={handleCloseModal}
+                  fetchData={fetchData}
+                  id={id}
+                />
               </Modal>
               <ChevronLeftIcon
                 className="cursor-grab"
@@ -111,22 +125,19 @@ const Track = () => {
                   "aria-labelledby": "basic-button",
                 }}
               >
-                <MenuItem onClick={handleClose}>Delete track</MenuItem>
+                <MenuItem onClick={deleteTrack}>Delete track</MenuItem>
                 <MenuItem onClick={handleOpenModal}>Upload audio</MenuItem>
               </Menu>
             </div>
             <div>
               <div className="p-6">
-                <p className="mb-2 font-light text-neutral-400">Track name</p>
+                <p className="mb-2 font-light text-neutral-400">track name</p>
                 <p className="mb-6 font-bold text-4xl">{track.trackName}</p>
                 <Divider></Divider>
               </div>
-              <div className="p-6">
-                <p className="mb-2 font-light text-neutral-400">Notes</p>
-                <Note />
-              </div>
+
               <div className="w-full flex flex-col justify-between p-6">
-                <p className="mb-2 font-light text-neutral-400">File name</p>
+                <p className="mb-2 font-light text-neutral-400">files</p>
                 {track.audioFiles &&
                   track.audioFiles.map((file) => (
                     <div
@@ -139,6 +150,7 @@ const Track = () => {
                           ? decodeURIComponent(file.match(regexPattern)[1])
                           : file}
                       </p>
+                      <PlayArrowIcon />
                     </div>
                   ))}
                 <div></div>

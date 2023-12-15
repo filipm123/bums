@@ -25,7 +25,7 @@ import {
 import { db } from "../../../firebase";
 import { storage } from "firebase.js";
 
-const FileUpload = ({ id }) => {
+const FileUpload = ({ handleCloseModal, fetchData, id }) => {
   const style = {
     position: "absolute",
     top: "50%",
@@ -84,6 +84,8 @@ const FileUpload = ({ id }) => {
           const tracksRef = doc(db, "tracks", id);
 
           updateDoc(tracksRef, { audioFiles: arrayUnion(downloadUrl) });
+          fetchData();
+          handleCloseModal();
         }
       );
     }

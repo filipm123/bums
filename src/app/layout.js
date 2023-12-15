@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           <head>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" />
           </head>
-          <body className={inter.className}>
+          <body className={`${inter.className} overflow-auto`}>
             <Header />
             {children}
           </body>

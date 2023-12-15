@@ -5,14 +5,33 @@ import { useRouter } from "next/navigation";
 import { UserContext } from "../Context/UserContext";
 import { collection, query, getDocs, where } from "firebase/firestore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-
+import AddTracks from "./AddTrackForm";
 import { db } from "../../../firebase";
-export default function TrackList({ id }) {
+import { Add } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import AddIcon from "@mui/icons-material/Add";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+export default function TrackList({ id, currentUser, handleAddClose }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-
-  const { currentUser } = useContext(UserContext);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const fetchTrackListData = async () => {
     try {
@@ -32,6 +51,7 @@ export default function TrackList({ id }) {
   useEffect(() => {
     fetchTrackListData();
   }, []);
+
   if (loading) {
     return (
       <div className="">
@@ -46,6 +66,20 @@ export default function TrackList({ id }) {
   } else {
     return (
       <div className="flex flex-col gap-3 p-2">
+        <Button variant='outlined' onClick={handleOpen}><AddIcon /> Add tracks</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <AddTracks
+            id={id}
+            currentUser={currentUser}
+            handleClose={handleClose}
+            fetchTrackListData={fetchTrackListData}
+          />
+        </Modal>
         {data &&
           data.map((track) => (
             <div

@@ -155,13 +155,6 @@ const Project = () => {
                 >
                   Delete
                 </Button>
-                <Button
-                  className="h-10 p-4"
-                  variant="outlined"
-                  onClick={handleAddOpen}
-                >
-                  Add tracks
-                </Button>
               </span>
             </div>
             <div className="flex flex-col gap-4">
@@ -169,8 +162,6 @@ const Project = () => {
                 <div className="text-neutral-600 flex gap-2 justify-between p-2">
                   <p>track name</p>
                   <div className="flex gap-5">
-                    <p>status</p>
-                    <p>last changed</p>
                     <div></div>
                     <div></div>
                     <div></div>
@@ -183,7 +174,11 @@ const Project = () => {
 
                 <Divider></Divider>
               </div>
-              <TrackList id={id} />
+              <TrackList
+                handleAddClose={handleAddClose}
+                id={id}
+                currentUser={currentUser}
+              />
             </div>
 
             <Modal
@@ -229,12 +224,7 @@ const Project = () => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <AddTracks
-                handleAddClose={handleAddClose}
-                fetchData={fetchData}
-                id={id}
-                currentUser={currentUser}
-              />
+              <AddTracks />
             </Modal>
           </div>
         ))}
