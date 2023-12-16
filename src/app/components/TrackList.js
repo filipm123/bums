@@ -66,7 +66,9 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
   } else {
     return (
       <div className="flex flex-col gap-3 p-2">
-        <Button variant='outlined' onClick={handleOpen}><AddIcon /> Add tracks</Button>
+        <Button variant="outlined" onClick={handleOpen}>
+          <AddIcon /> Add tracks
+        </Button>
         <Modal
           open={open}
           onClose={handleClose}

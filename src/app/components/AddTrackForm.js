@@ -41,6 +41,7 @@ const AddTracks = ({ fetchTrackListData, id, handleClose, currentUser }) => {
         trackName: trackTitle,
         projectId: id,
         owner: currentUser.uid,
+        notes: []
       });
 
       fetchTrackListData();
