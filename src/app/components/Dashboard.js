@@ -1,5 +1,4 @@
 import SideBar from "./SideBar";
-import "scrollable-component";
 const Dashboard = () => {
   return (
 
