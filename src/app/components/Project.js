@@ -8,7 +8,14 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+  listAll,
+} from "firebase/storage";
 import { db } from "../../../firebase";
 import { useEffect, useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
@@ -22,6 +29,19 @@ import TrackList from "./TrackList";
 import Divider from "@mui/material/Divider";
 import { UserContext } from "../Context/UserContext";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "#08070B",
+  border: "1px solid #545363",
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 4,
+};
+
 const Project = () => {
   const { currentUser } = useContext(UserContext);
   const storage = getStorage();
@@ -32,18 +52,6 @@ const Project = () => {
   const id = params.projectid;
   const [loading, setLoading] = useState(true);
   const fileTypes = ["JPG", "PNG", "GIF"];
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "#08070B",
-    border: "1px solid #545363",
-    borderRadius: 2,
-    boxShadow: 24,
-    p: 4,
-  };
 
   const [addOpen, setAddOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -52,6 +60,7 @@ const Project = () => {
   const handleDeleteClose = () => setDeleteOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
+
   const fetchData = async () => {
     try {
       const projectsRef = query(collection(db, "projects"));
@@ -73,6 +82,7 @@ const Project = () => {
   }, []);
 
   const [cover, setCover] = useState(null);
+
   const handleCoverChange = (cover) => {
     setCover(cover);
     const coverRef = ref(storage, `covers/${cover.name}`);
@@ -87,9 +97,14 @@ const Project = () => {
 
   const handleDelete = async () => {
     const projectRef = doc(db, "projects", id);
-
     await deleteDoc(projectRef);
-
+    const tracksRef = ref(storage, id);
+    listAll(tracksRef).then((listResults) => {
+      const promises = listResults.items.map((item) => {
+        return deleteObject(item);
+      });
+      Promise.all(promises);
+    });
     handleDeleteClose();
     router.push("/dashboard");
   };

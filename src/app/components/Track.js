@@ -32,6 +32,7 @@ const Track = () => {
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const id = params.trackid;
+  const projectid = params.projectid;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -98,6 +99,7 @@ const Track = () => {
                   handleCloseModal={handleCloseModal}
                   fetchData={fetchData}
                   id={id}
+                  projectid={projectid}
                 />
               </Modal>
               <ChevronLeftIcon

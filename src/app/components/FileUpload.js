@@ -25,7 +25,7 @@ import {
 import { db } from "../../../firebase";
 import { storage } from "firebase.js";
 
-const FileUpload = ({ handleCloseModal, fetchData, id }) => {
+const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
   const style = {
     position: "absolute",
     top: "50%",
@@ -58,7 +58,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id }) => {
   const uploadFiles = async () => {
     const tracks = [];
     for (const file of files) {
-      const fileRef = ref(storage, `tracks/${file.name}`);
+      const fileRef = ref(storage, `${projectid}/${file.name}`);
       const uploadTask = uploadBytesResumable(fileRef, file, metadata);
 
       uploadTask.on(
