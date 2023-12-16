@@ -128,7 +128,7 @@ const Note = ({ id }) => {
         ))}{" "}
       </div>
       <Button
-        className="mt-4 w-full"
+        className="mt-2 w-full"
         variant="outlined"
         onClick={handleOpen}
       >
