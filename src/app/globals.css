@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #08070B;
+  
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #9b9b9f; 
+  border-radius:15px;
+  
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -18,12 +40,12 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #08070b;
+  background: #000000;
   max-height: 100vh;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #08070b;
+  background-color: #000000;
 }
 /*LOADING ICON*/
 .lds-ellipsis {

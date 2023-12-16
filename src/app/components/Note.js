@@ -114,7 +114,7 @@ const Note = ({ id }) => {
 
       <div className="flex flex-wrap mt-2 gap-2">
         {data.map((note) => (
-          <div className="flex flex-col rounded p-4 w-[320px] min-h-[200px] bg-white text-black">
+          <div className="mb-2 flex flex-col rounded p-4 w-[320px] min-h-[200px] bg-white text-black">
             <p className="flex-grow">{note.content}</p>
             <Button
               sx={{ color: "red", borderColor: "red" }}

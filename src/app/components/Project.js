@@ -21,6 +21,7 @@ import { FileUploader } from "react-drag-drop-files";
 import TrackList from "./TrackList";
 import Divider from "@mui/material/Divider";
 import { UserContext } from "../Context/UserContext";
+
 const Project = () => {
   const { currentUser } = useContext(UserContext);
   const storage = getStorage();
@@ -106,7 +107,7 @@ const Project = () => {
     );
   } else {
     return (
-      <div className="w-full p-10 bg-bg">
+      <div className="w-full p-10 bg-black">
         {data.map((item) => (
           <div className="w-full gap-10 flex flex-col" key={item.id}>
             <div className="w-full flex justify-between gap-6">

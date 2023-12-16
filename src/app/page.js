@@ -1,8 +1,4 @@
 "use client";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
@@ -21,7 +17,7 @@ export default function Home() {
       scaleMobile: 1.0,
       color: 0x3e3d63,
       color2: 0x2a293c,
-      backgroundColor: 0x08070a,
+      backgroundColor: 0x000000,
       showLines: false,
     });
   }, []);
