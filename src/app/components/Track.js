@@ -26,7 +26,7 @@ const Track = () => {
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-  const regexPattern = /\/tracks%2F([^\/]+\.wav)\?/;
+  const regexPattern = /\/o\/[^%]+%2F([^\/]+(?:\.wav|\.mp3))\?/;
   const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

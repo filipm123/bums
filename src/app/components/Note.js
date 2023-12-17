@@ -91,15 +91,15 @@ const Note = ({ id }) => {
               spellCheck="false"
               cols="10"
               rows="10"
-              placeholder="Type...."
+              placeholder="hold on imma fix wolves..."
               maxLength="100"
-              className="w-full p-4 text-black rounded-xl outline-none mb-4"
+              className="w-full p-4 text-black rounded-xl outline-none mb-4 resize-none"
               onChange={handleChange}
               value={note.content}
               required
             ></textarea>
             <Button
-              sx={{ color: "black", borderColor: "black" }}
+              sx={{ color: "black", borderColor: "black:" }}
               className=""
               variant="outlined"
               onClick={handleSubmit}
