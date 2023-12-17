@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 import Dashboard from "../components/Dashboard";
 import SignIn from "../components/SignIn";
 import SwipeableEdgeDrawer from "../components/MobileBottomDrawer";
-import { useTheme } from "@mui/material/styles/useTheme";
+import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 export default function DashboardPage() {
   const auth = getAuth();
