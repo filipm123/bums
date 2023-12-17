@@ -17,12 +17,17 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: '80vw',
+  width: "80vw",
   bgcolor: "#08070B",
   border: "1px solid #545363",
   borderRadius: 2,
   boxShadow: 24,
   p: 4,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "1rem",
+  borderRadius: "0.25rem",
 };
 
 const AddProjectForm = ({ fetchData }) => {
@@ -31,6 +36,7 @@ const AddProjectForm = ({ fetchData }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
+
   const addProject = async (e) => {
     e.preventDefault();
     try {
@@ -65,12 +71,11 @@ const AddProjectForm = ({ fetchData }) => {
         aria-describedb2y="modal-modal-description"
       >
         <form onSubmit={addProject}>
-          <Box className="rounded flex items-center flex-col gap-4" sx={style}>
-            <h1 className="p-4 text-center font-bold text-2xl">Add project</h1>
+          <Box sx={style}>
+            <h1 className="p-4 text-2xl font-bold text-center">Add project</h1>
             <TextField
               id="outlined-basic"
               label="Project name"
-              F
               variant="outlined"
               className="w-full"
               onChange={(e) => setTitle(e.target.value)}

@@ -1,14 +1,9 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ClearIcon from "@mui/icons-material/Clear";
-import UploadIcon from "@mui/icons-material/Upload";
 import MenuIcon from "@mui/icons-material/Menu";
-import Divider from "@mui/material/Divider";
-import LogoutIcon from "@mui/icons-material/Logout";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const StyledMenu = styled((props) => (
   <Menu

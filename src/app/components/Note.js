@@ -1,8 +1,7 @@
 "use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal"
+import Modal from "@mui/material/Modal";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { useState, useEffect } from "react";
@@ -17,13 +16,13 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "../../../firebase";
-import { Delete } from "@mui/icons-material";
+
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "80vw",
   bgcolor: "white",
   border: "1px solid #545363",
   borderRadius: 2,
@@ -126,11 +125,7 @@ const Note = ({ id }) => {
           </div>
         ))}{" "}
       </div>
-      <Button
-        className="w-full"
-        variant="outlined"
-        onClick={handleOpen}
-      >
+      <Button className="w-full" variant="outlined" onClick={handleOpen}>
         <AddRoundedIcon />
       </Button>
     </div>

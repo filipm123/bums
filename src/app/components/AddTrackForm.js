@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 
 import {
   doc,
-  setDoc,
   addDoc,
   updateDoc,
   arrayUnion,
@@ -23,12 +22,17 @@ const AddTracks = ({ fetchTrackListData, id, handleClose, currentUser }) => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: '80vw',
     bgcolor: "#08070B",
     border: "1px solid #545363",
     borderRadius: 2,
     boxShadow: 24,
     p: 4,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "1rem",
+    borderRadius: "0.25rem",
   };
 
   const handleAddTrack = async (e) => {
@@ -41,7 +45,7 @@ const AddTracks = ({ fetchTrackListData, id, handleClose, currentUser }) => {
         trackName: trackTitle,
         projectId: id,
         owner: currentUser.uid,
-        notes: []
+        notes: [],
       });
 
       fetchTrackListData();
@@ -53,11 +57,7 @@ const AddTracks = ({ fetchTrackListData, id, handleClose, currentUser }) => {
   return (
     <>
       <form onSubmit={handleAddTrack}>
-        <Box
-          id="box"
-          className="flex flex-col justify-center items-center gap-4"
-          sx={style}
-        >
+        <Box id="box" sx={style}>
           <h3 className="text-xl mb-2">Add a track</h3>
           <TextField
             id="outlined-basic"

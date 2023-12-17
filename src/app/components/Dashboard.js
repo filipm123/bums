@@ -1,5 +1,4 @@
 "use client";
-import Header from "./Header";
 import SideBar from "./SideBar";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";

@@ -48,7 +48,6 @@ const Project = () => {
   const storage = getStorage();
   const router = useRouter();
   const [data, setData] = useState([]);
-  const [tracksData, setTracksData] = useState([]);
   const params = useParams();
   const id = params.projectid;
   const [loading, setLoading] = useState(true);

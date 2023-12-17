@@ -24,20 +24,25 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { storage } from "firebase.js";
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  maxWidth: "400px",
+  bgcolor: "#08070B",
+  border: "1px solid #545363",
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 4,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "1rem",
+  borderRadius: "0.25rem",
+};
 
 const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    maxWidth:'400px',
-    bgcolor: "#08070B",
-    border: "1px solid #545363",
-    borderRadius: 2,
-    boxShadow: 24,
-    p: 4,
-  };
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -106,11 +111,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
   if (uploadProgress == 0) {
     return (
       <>
-        <Box
-          id="box"
-          className="flex flex-col justify-center items-center gap-4"
-          sx={style}
-        >
+        <Box id="box" sx={style}>
           <h3 className="text-xl mb-2">Upload your tracks</h3>
           <FilePreview />
           <Button className="w-full" component="label" variant="outlined">
@@ -137,11 +138,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
   }
   return (
     <>
-      <Box
-        id="box"
-        className="flex flex-col justify-center items-center gap-4"
-        sx={style}
-      >
+      <Box id="box" sx={style}>
         <h1>Uploading files...</h1>{" "}
         <CircularProgress variant="determinate" value={uploadProgress} />
       </Box>

@@ -2,16 +2,10 @@
 
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
 import Link from "next/link";
-import { UserAuth } from "../Context/UserContext";
 import { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
-import { getAuth, signOut } from "firebase/auth";
-import Button from "@mui/material/Button";
-import app from "../../../firebase";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { getAuth } from "firebase/auth";
 import React from "react";
 import { useRouter } from "next/navigation";
 import OptionsMenu from "./OptionsMenu";
@@ -21,14 +15,7 @@ const Header = () => {
   const router = useRouter();
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+
   const handleLogout = () => {
     auth.signOut();
     router.push("/");

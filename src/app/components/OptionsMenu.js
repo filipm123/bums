@@ -3,9 +3,7 @@ import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import EditIcon from "@mui/icons-material/Edit";
-import Divider from "@mui/material/Divider";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const StyledMenu = styled((props) => (
@@ -88,7 +86,6 @@ const OptionsMenu = ({ handleLogout }) => {
           <LogoutIcon />
           Logout
         </MenuItem>
-        
       </StyledMenu>
     </div>
   );

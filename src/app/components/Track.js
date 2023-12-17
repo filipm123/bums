@@ -119,7 +119,7 @@ const Track = () => {
             <div>
               <div className="p-6">
                 <p className="mb-2 font-light text-neutral-400">track name</p>
-                <p className="mb-6 font-bold text-4xl">{track.trackName}</p>
+                <p className="mb-6 break-words font-bold text-2xl lg:text-4xl">{track.trackName}</p>
                 <Divider></Divider>
               </div>
               <div className="flex flex-col p-6">
@@ -151,7 +151,7 @@ const Track = () => {
                 <div></div>
               </div>
             </div>
-            {/*<Player url={url} />*/}
+            <Player url={url} />
           </div>
         ))}
       </div>
