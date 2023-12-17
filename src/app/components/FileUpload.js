@@ -31,7 +31,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 800,
+    maxWidth:'400px',
     bgcolor: "#08070B",
     border: "1px solid #545363",
     borderRadius: 2,

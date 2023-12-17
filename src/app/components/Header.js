@@ -1,4 +1,8 @@
 "use client";
+
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import Link from "next/link";
 import { UserAuth } from "../Context/UserContext";
 import { useContext } from "react";
@@ -12,6 +16,8 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import OptionsMenu from "./OptionsMenu";
 const Header = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const router = useRouter();
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
@@ -34,9 +40,14 @@ const Header = () => {
           <Link href="/">
             <strong className="text-2xl">BUMS</strong>
           </Link>
-          <Link className="flex  items-center" href="/dashboard">
-            <p>Dashboard</p>
-          </Link>
+
+          {matches ? (
+            <Link className="flex items-center" href="/dashboard">
+              <p>Dashboard</p>
+            </Link>
+          ) : (
+            <></>
+          )}
         </div>
 
         {currentUser ? (

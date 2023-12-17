@@ -6,15 +6,30 @@ import { getAuth } from "firebase/auth";
 import { db } from "../../../../../firebase";
 import { useContext } from "react";
 import { UserContext } from "@/app/Context/UserContext";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import SwipeableEdgeDrawer from "@/app/components/MobileBottomDrawer";
+
 export default function ProjectPage({ params }) {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   if (currentUser != null) {
     return (
-      <div className='flex flex-grow'>
-        <SideBar />
-        <Project />
-      </div>
+      <>
+        {matches ? (
+          <div className="flex flex-grow">
+            <SideBar />
+            <Project />
+          </div>
+        ) : (
+          <div className="flex flex-grow">
+            <Project />
+            <SwipeableEdgeDrawer/>
+          </div>
+        )}
+      </>
     );
   }
   return <SignIn />;

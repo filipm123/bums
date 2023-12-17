@@ -125,7 +125,6 @@ const Track = () => {
               <div className="flex flex-col p-6">
                 <p className="font-light text-neutral-400">notes</p>
                 <Note data={data.notes} id={id} />
-                
               </div>
               <div className="w-full flex flex-col justify-between p-6">
                 <p className="font-light mb-2 text-neutral-400">files</p>
@@ -152,7 +151,7 @@ const Track = () => {
                 <div></div>
               </div>
             </div>
-            <Player url={url} />
+            {/*<Player url={url} />*/}
           </div>
         ))}
       </div>

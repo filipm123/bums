@@ -125,15 +125,12 @@ const Project = () => {
     return (
       <div className="w-full p-10 bg-black">
         {data.map((item) => (
-          <div className="w-full gap-10 flex flex-col" key={item.id}>
+          <div key={item.id}>
             <div className="w-full flex justify-between gap-6">
-              <div className="flex gap-4">
+              <div className="lg:flex gap-4">
                 <div>
                   {item.cover ? (
-                    <img
-                      className="rounded object-scale-down h-72 w-72"
-                      src={item.cover}
-                    />
+                    <img className="h-48 w-48 rounded" src={item.cover} />
                   ) : (
                     <FileUploader
                       handleChange={handleCoverChange}
@@ -143,11 +140,11 @@ const Project = () => {
                         <>
                           <div>
                             <img
-                              className="object-scale-down h-72 w-72"
+                              className="object-scale-down h-48 w-48 mb-2"
                               src={item.cover}
                             />
 
-                            <div className="absolute top-[140px] right-[22px] underline">
+                            <div className="absolute top-[80px] left-[30px] text-sm underline">
                               Drag and drop your artwork here
                             </div>
                           </div>
@@ -157,7 +154,7 @@ const Project = () => {
                   )}
                 </div>
 
-                <div className="mt-44 text-3xl font-bold">
+                <div className="lg:mt-24 text-3xl font-bold">
                   <p className="text-sm font-light text-stone-500">album</p>
                   {item.title}
                   <p className="font-normal mt-4">{item.author}</p>

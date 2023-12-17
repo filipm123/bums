@@ -26,7 +26,7 @@ export default function Home() {
       id="vanta"
       className="gap-12 flex justify-center flex-col items-center flex-grow text-center text-5xl"
     >
-      <div>
+      <div className="px-4 text-base xl:text-4xl">
         <strong>BUMS: </strong> an easy way to manage your wip albums!
       </div>
       <Link href="/dashboard">
