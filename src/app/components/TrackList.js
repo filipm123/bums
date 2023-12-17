@@ -91,7 +91,7 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
                 })
               }
               key={track.id}
-              className="cursor-grab flex justify-between w-full rounded border-[1px] hover:border-[#3d364d] hover:bg-[#3d364d] border-br p-4"
+              className="cursor-grab flex justify-between w-full rounded border-[1px] hover:border-[#3d364d] hover:bg-[#3d364d] border-br p-2 text-sm items-center"
             >
               <p>{track.trackName}</p>
               <ChevronRightIcon />

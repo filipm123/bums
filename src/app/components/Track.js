@@ -20,6 +20,7 @@ import FileUpload from "./FileUpload";
 import Player from "./Player";
 import { db } from "../../../firebase";
 import { doc, deleteDoc } from "firebase/firestore";
+import TrackMenu from "./TrackMenu";
 
 const Track = () => {
   const [url, setUrl] = useState("");
@@ -110,26 +111,10 @@ const Track = () => {
                   })
                 }
               />
-              <MenuIcon
-                id="basic-button"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-                className="cursor-grab"
+              <TrackMenu
+                deleteTrack={deleteTrack}
+                handleOpenModal={handleOpenModal}
               />
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-              >
-                <MenuItem onClick={deleteTrack}>Delete track</MenuItem>
-                <MenuItem onClick={handleOpenModal}>Upload audio</MenuItem>
-              </Menu>
             </div>
             <div>
               <div className="p-6">
@@ -137,20 +122,19 @@ const Track = () => {
                 <p className="mb-6 font-bold text-4xl">{track.trackName}</p>
                 <Divider></Divider>
               </div>
-              <div className="flex flex-col gap-4 p-6">
-                <p className="mb-2 font-light text-neutral-400">notes</p>
+              <div className="flex flex-col p-6">
+                <p className="font-light text-neutral-400">notes</p>
                 <Note data={data.notes} id={id} />
                 
-                <Divider></Divider>
               </div>
-              <div className="w-full flex flex-col min-h-[300px] justify-between p-6">
-                <p className="mb-2 font-light text-neutral-400">files</p>
+              <div className="w-full flex flex-col justify-between p-6">
+                <p className="font-light mb-2 text-neutral-400">files</p>
                 {track.audioFiles &&
                   track.audioFiles.map((file) => (
                     <div
                       onClick={() => setUrl(file)}
                       key={file}
-                      className="cursor-grab mb-2 flex justify-between items-center w-full rounded border-[1px] hover:border-[#3d364d] hover:bg-[#3d364d] border-br p-4"
+                      className="cursor-grab mb-2 flex justify-between items-center w-full rounded border-[1px] hover:border-[#3d364d] hover:bg-[#3d364d] border-br p-2 text-sm"
                     >
                       <p>
                         {file.match(regexPattern)

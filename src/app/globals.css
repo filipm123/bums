@@ -107,6 +107,7 @@ body {
 
 .rhap_container {
   background-color: #08070b;
+  height:80px;
 }
 
 .rhap_progress-bar {
@@ -114,7 +115,7 @@ body {
   position: relative;
   z-index: 0;
   width: 100%;
-  height: 3px;
+  height: 2px;
   background-color: white;
   border-radius: 2px;
 }

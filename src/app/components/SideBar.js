@@ -9,6 +9,7 @@ import AlbumIcon from "@mui/icons-material/Album";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
@@ -37,7 +38,7 @@ const SideBar = () => {
         ...doc.data(),
       }));
       setData((prevData) => [...newData]);
-      console.log('FETCHED')
+      console.log("FETCHED");
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -58,7 +59,7 @@ const SideBar = () => {
 
       <ListItemButton onClick={handleClick} disableRipple>
         <ListItemIcon>
-          <AlbumIcon />
+          <FolderRoundedIcon />
         </ListItemIcon>
         <ListItemText primary="Projects" />
         {open ? <ExpandLess /> : <ExpandMore />}
@@ -76,7 +77,7 @@ const SideBar = () => {
               key={item}
             >
               <ListItemIcon>
-                <StarBorder />
+                <AlbumIcon />
               </ListItemIcon>
               <ListItemText primary={item.title} />
             </ListItemButton>

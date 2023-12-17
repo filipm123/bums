@@ -28,6 +28,7 @@ import { FileUploader } from "react-drag-drop-files";
 import TrackList from "./TrackList";
 import Divider from "@mui/material/Divider";
 import { UserContext } from "../Context/UserContext";
+import ProjectMenu from "./ProjectMenu";
 
 const style = {
   position: "absolute",
@@ -162,15 +163,8 @@ const Project = () => {
                   <p className="font-normal mt-4">{item.author}</p>
                 </div>
               </div>
-              <span className="flex gap-3 ">
-                <Button
-                  className="h-10 p-4"
-                  variant="outlined"
-                  color="error"
-                  onClick={handleDeleteOpen}
-                >
-                  Delete
-                </Button>
+              <span className="mr-2">
+                <ProjectMenu handleDeleteOpen={handleDeleteOpen} />
               </span>
             </div>
             <div className="flex flex-col gap-4">

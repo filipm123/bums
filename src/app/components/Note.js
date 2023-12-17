@@ -2,8 +2,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-
+import Modal from "@mui/material/Modal"
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { useState, useEffect } from "react";
@@ -114,7 +113,7 @@ const Note = ({ id }) => {
 
       <div className="flex flex-wrap mt-2 gap-2">
         {data.map((note) => (
-          <div className="mb-2 flex flex-col rounded p-4 w-[320px] min-h-[200px] bg-white text-black">
+          <div className="mb-4 flex flex-col rounded p-4 w-[320px] min-h-[200px] bg-white text-black">
             <p className="flex-grow">{note.content}</p>
             <Button
               sx={{ color: "red", borderColor: "red" }}
@@ -128,7 +127,7 @@ const Note = ({ id }) => {
         ))}{" "}
       </div>
       <Button
-        className="mt-2 w-full"
+        className="w-full"
         variant="outlined"
         onClick={handleOpen}
       >

@@ -10,6 +10,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import React from "react";
 import { useRouter } from "next/navigation";
+import OptionsMenu from "./OptionsMenu";
 const Header = () => {
   const router = useRouter();
   const auth = getAuth();
@@ -41,27 +42,7 @@ const Header = () => {
         {currentUser ? (
           <>
             <div className="flex gap-2">
-              <Button
-                id="basic-button"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              >
-                Account
-              </Button>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-              >
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-              </Menu>
+              <OptionsMenu handleLogout={handleLogout} />
             </div>
           </>
         ) : (
