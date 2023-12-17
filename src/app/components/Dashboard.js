@@ -1,7 +1,7 @@
 "use client";
 import Header from "./Header";
 import SideBar from "./SideBar";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
 const Dashboard = () => {
   const theme = useTheme();

@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import { db } from "../../../../../firebase";
 import { useContext } from "react";
 import { UserContext } from "@/app/Context/UserContext";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SwipeableEdgeDrawer from "@/app/components/MobileBottomDrawer";
 
