@@ -5,14 +5,27 @@ import { getAuth } from "firebase/auth";
 import Dashboard from "../components/Dashboard";
 import SignIn from "../components/SignIn";
 import SwipeableEdgeDrawer from "../components/MobileBottomDrawer";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 export default function DashboardPage() {
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   if (currentUser != null) {
     return (
       <>
-        <Dashboard />
-        <SwipeableEdgeDrawer/>
+        {matches ? (
+          <div>
+            <Dashboard />
+            
+          </div>
+        ) : (
+          <div>
+            <Dashboard />
+            <SwipeableEdgeDrawer />
+          </div>
+        )}
       </>
     );
   }
