@@ -15,8 +15,8 @@ const auth = getAuth();
 const style = {
  
   width: 400,
-  bgcolor: "#08070B",
-  border: "1px solid #545363",
+  bgcolor: "black",
+  border: "1px solid white",
   borderRadius: 2,
   boxShadow: 24,
   p: 1,
