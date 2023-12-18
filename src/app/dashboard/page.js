@@ -7,6 +7,7 @@ import SignIn from "../components/SignIn";
 import SwipeableEdgeDrawer from "../components/MobileBottomDrawer";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import SideBar from "../components/SideBar";
 export default function DashboardPage() {
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
@@ -16,9 +17,9 @@ export default function DashboardPage() {
     return (
       <>
         {matches ? (
-          <div>
+          <div className="flex flex-grow">
+            <SideBar />
             <Dashboard />
-            
           </div>
         ) : (
           <div>

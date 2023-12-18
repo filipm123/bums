@@ -84,14 +84,14 @@ const Note = ({ id }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form className="overflow-auto w-full bg-white flex flex-col p-4 rounded">
+          <form className="flex w-full flex-col overflow-auto rounded bg-white p-4">
             <textarea
               spellCheck="false"
               cols="10"
               rows="10"
               placeholder="hold on imma fix wolves..."
               maxLength="100"
-              className="w-full p-4 text-black rounded-xl outline-none mb-4 resize-none"
+              className="mb-4 w-full resize-none rounded-xl p-4 text-black outline-none"
               onChange={handleChange}
               value={note.content}
               required
@@ -110,9 +110,9 @@ const Note = ({ id }) => {
         </Box>
       </Modal>
 
-      <div className="flex flex-wrap mt-2 gap-2">
+      <div className="mt-2 flex flex-wrap gap-2">
         {data.map((note) => (
-          <div className="mb-4 flex flex-col rounded p-4 w-[320px] min-h-[200px] bg-white text-black">
+          <div className="mb-4 flex min-h-[200px] w-[320px] flex-col rounded bg-white p-4 text-black">
             <p className="flex-grow">{note.content}</p>
             <Button
               sx={{ color: "red", borderColor: "red" }}

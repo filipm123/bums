@@ -26,7 +26,7 @@ export default function ProjectPage({ params }) {
         ) : (
           <div className="flex flex-grow">
             <Project />
-            <SwipeableEdgeDrawer/>
+            <SwipeableEdgeDrawer />
           </div>
         )}
       </>

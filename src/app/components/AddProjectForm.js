@@ -18,8 +18,8 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "80vw",
-  bgcolor: "#08070B",
-  border: "1px solid #545363",
+  bgcolor: "black",
+  border: "1px solid #242424",
   borderRadius: 2,
   boxShadow: 24,
   p: 4,
@@ -60,9 +60,13 @@ const AddProjectForm = ({ fetchData }) => {
       {" "}
       <ListItemButton onClick={handleOpen} disableRipple>
         <ListItemIcon>
-          <AddIcon />
+          <AddIcon className=" text-neutral-400" />
         </ListItemIcon>
-        <ListItemText primary="Add Project"></ListItemText>
+        <ListItemText
+          className="text-sm text-neutral-400"
+          primary="Add Project"
+          disableTypography
+        />
       </ListItemButton>
       <Modal
         open={modalOpen}
@@ -72,7 +76,7 @@ const AddProjectForm = ({ fetchData }) => {
       >
         <form onSubmit={addProject}>
           <Box sx={style}>
-            <h1 className="p-4 text-2xl font-bold text-center">Add project</h1>
+            <h1 className="p-4 text-center text-2xl font-bold">Add project</h1>
             <TextField
               id="outlined-basic"
               label="Project name"
@@ -83,11 +87,9 @@ const AddProjectForm = ({ fetchData }) => {
             />
             <Button
               sx={{
-                borderColor: "#545363",
-                color: "#545363",
                 width: 1,
                 ":hover": {
-                  borderColor: "#8785AF",
+                  borderColor: "white",
                 },
               }}
               type="submit"

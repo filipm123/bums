@@ -15,8 +15,8 @@ export default function Home() {
       minWidth: 200.0,
       scale: 1.0,
       scaleMobile: 1.0,
-      color: 0x3e3d63,
-      color2: 0x2a293c,
+      color: 0x242424,
+      color2: 0x242424,
       backgroundColor: 0x000000,
       showLines: false,
     });
@@ -24,18 +24,14 @@ export default function Home() {
   return (
     <div
       id="vanta"
-      className="gap-12 flex justify-center flex-col items-center flex-grow text-center text-5xl"
+      className="flex flex-grow flex-col items-center justify-center gap-12 text-center text-5xl"
     >
       <div className="px-4 text-base xl:text-4xl">
         <strong>BUMS: </strong> an easy way to manage your wip albums!
       </div>
       <Link href="/dashboard">
         {" "}
-        <Button
-          sx={{ color: "#ffffff", borderColor: "#2A293C" }}
-          variant="outlined"
-          size="large"
-        >
+        <Button variant="outlined" size="large">
           Get started
         </Button>
       </Link>

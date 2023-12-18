@@ -70,6 +70,7 @@ const OptionsMenu = ({ handleLogout }) => {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
+        className='text-sm'
       >
         Account
       </Button>

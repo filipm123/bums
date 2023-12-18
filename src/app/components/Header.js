@@ -21,15 +21,15 @@ const Header = () => {
     router.push("/");
   };
   return (
-    <header className="h-20 p-10 pb-20 bg-black border-b-[1px] border-br">
-      <nav className="flex justify-between items-center">
+    <header className="border-b-[1px] border-br bg-black p-4">
+      <nav className="flex items-center justify-between">
         <div className="flex gap-12">
           <Link href="/">
             <strong className="text-2xl">BUMS</strong>
           </Link>
 
           {matches ? (
-            <Link className="flex items-center" href="/dashboard">
+            <Link className="text-sm flex items-center" href="/dashboard">
               <p>Dashboard</p>
             </Link>
           ) : (

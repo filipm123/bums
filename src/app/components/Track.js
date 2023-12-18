@@ -83,13 +83,13 @@ const Track = () => {
     );
   } else {
     return (
-      <div className="p-8 flex-grow flex flex-col items-center justify-center">
+      <div className="flex flex-grow flex-col items-center justify-center p-8">
         {data.map((track) => (
           <div
             key={track}
-            className="gap-12 flex flex-col min-h-[1000px] w-[100%] rounded-xl border-[1px] border-br p-8"
+            className="flex min-h-[1000px] w-[100%] flex-col gap-12 rounded-xl border-[1px] border-br p-8"
           >
-            <div className="w-full flex justify-between items-center">
+            <div className="flex w-full items-center justify-between">
               <Modal
                 open={openModal}
                 onClose={handleCloseModal}
@@ -119,21 +119,23 @@ const Track = () => {
             <div>
               <div className="p-6">
                 <p className="mb-2 font-light text-neutral-400">track name</p>
-                <p className="mb-6 break-words font-bold text-2xl lg:text-4xl">{track.trackName}</p>
+                <p className="mb-6 break-words text-2xl font-bold lg:text-4xl">
+                  {track.trackName}
+                </p>
                 <Divider></Divider>
               </div>
               <div className="flex flex-col p-6">
                 <p className="font-light text-neutral-400">notes</p>
                 <Note data={data.notes} id={id} />
               </div>
-              <div className="w-full flex flex-col justify-between p-6">
-                <p className="font-light mb-2 text-neutral-400">files</p>
+              <div className="flex w-full flex-col justify-between p-6">
+                <p className="mb-2 font-light text-neutral-400">files</p>
                 {track.audioFiles &&
                   track.audioFiles.map((file) => (
                     <div
                       onClick={() => setUrl(file)}
                       key={file}
-                      className="cursor-grab mb-2 flex justify-between items-center w-full rounded border-[1px] hover:border-[#3d364d] hover:bg-[#3d364d] border-br p-2 text-sm"
+                      className="mb-2 flex w-full cursor-grab items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
                     >
                       <p>
                         {file.match(regexPattern)

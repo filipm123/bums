@@ -29,7 +29,7 @@ const SideBar = () => {
     try {
       const q = query(
         collection(db, "projects"),
-        where("owner", "==", currentUser.uid)
+        where("owner", "==", currentUser.uid),
       );
       const querySnapshot = await getDocs(q);
       const newData = querySnapshot.docs.map((doc) => ({
@@ -49,10 +49,10 @@ const SideBar = () => {
 
   return (
     <List
-      sx={{ width: "100%", maxWidth: 360, bgcolor: "#08070B" }}
+      sx={{ width: "50%", maxWidth: 300, bgcolor: "#08070B"}}
       component="nav"
       aria-labelledby="nested-list-subheader"
-      className="bg-black border-solid border-2 border-black"
+      className="border-2 border-solid border-black bg-black"
     >
       <AddProjectForm fetchData={fetchData} />
 
@@ -60,7 +60,7 @@ const SideBar = () => {
         <ListItemIcon>
           <FolderRoundedIcon />
         </ListItemIcon>
-        <ListItemText primary="Projects" />
+        <ListItemText className='text-sm' primary="Projects" disableTypography/>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -78,7 +78,7 @@ const SideBar = () => {
               <ListItemIcon>
                 <AlbumIcon />
               </ListItemIcon>
-              <ListItemText primary={item.title} />
+              <ListItemText className='text-sm' primary={item.title} disableTypography/>
             </ListItemButton>
           ))}
         </List>

@@ -89,7 +89,7 @@ const Project = () => {
     const projectRef = doc(db, "projects", id);
     uploadBytes(coverRef, cover).then((snapshot) => {
       getDownloadURL(coverRef).then((url) =>
-        updateDoc(projectRef, { cover: url }).then(fetchData())
+        updateDoc(projectRef, { cover: url }).then(fetchData()),
       );
       console.log("Cover uploaded");
     });
@@ -122,11 +122,11 @@ const Project = () => {
     );
   } else {
     return (
-      <div className="w-full p-10 bg-black">
+      <div className="w-full bg-black p-10">
         {data.map((item) => (
           <div key={item.id}>
-            <div className="w-full flex justify-between gap-6">
-              <div className="lg:flex gap-4">
+            <div className="flex w-full justify-between gap-6">
+              <div className="gap-4 lg:flex">
                 <div>
                   {item.cover ? (
                     <img className="h-48 w-48 rounded" src={item.cover} />
@@ -139,11 +139,11 @@ const Project = () => {
                         <>
                           <div>
                             <img
-                              className="object-scale-down h-48 w-48 mb-2"
+                              className="mb-2 h-48 w-48 object-scale-down"
                               src={item.cover}
                             />
 
-                            <div className="absolute top-[80px] left-[30px] text-sm underline">
+                            <div className="absolute left-[30px] top-[80px] text-sm underline">
                               Drag and drop your artwork here
                             </div>
                           </div>
@@ -153,10 +153,10 @@ const Project = () => {
                   )}
                 </div>
 
-                <div className="lg:mt-24 text-3xl font-bold">
+                <div className="text-3xl font-bold lg:mt-24">
                   <p className="text-sm font-light text-stone-500">album</p>
                   {item.title}
-                  <p className="font-normal mt-4">{item.author}</p>
+                  <p className="mt-4 font-normal">{item.author}</p>
                 </div>
               </div>
               <span className="mr-2">
@@ -165,7 +165,7 @@ const Project = () => {
             </div>
             <div className="flex flex-col gap-4">
               <div>
-                <div className="text-neutral-600 flex gap-2 justify-between p-2">
+                <div className="flex justify-between gap-2 p-2 text-neutral-600">
                   <p>track name</p>
                   <div className="flex gap-5">
                     <div></div>
@@ -194,10 +194,10 @@ const Project = () => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                <h3 className="text-xl mb-2">
+                <h3 className="mb-2 text-xl">
                   Are you sure you want to delete this project?
                 </h3>
-                <p className="font-light text-gray-500 mb-8">
+                <p className="mb-8 font-light text-gray-500">
                   This action is not reversible.
                 </p>
 

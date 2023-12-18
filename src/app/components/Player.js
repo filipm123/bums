@@ -20,7 +20,7 @@ const Player = ({ url }) => {
   return (
     <div>
       {matches ? (
-        <footer className=" bg-[#08070b] border-t-[1px] border-br fixed p-4 w-full bottom-0 right-0">
+        <footer className=" bg-black border-t-[1px] border-br fixed p-4 w-full bottom-0 right-0">
           <AudioPlayer
             customAdditionalControls={[]}
             footer

@@ -29,9 +29,9 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  maxWidth: "400px",
-  bgcolor: "#08070B",
-  border: "1px solid #545363",
+  width: "80vw",
+  bgcolor: "black",
+  border: "1px solid #242424",
   borderRadius: 2,
   boxShadow: 24,
   p: 4,
@@ -41,6 +41,7 @@ const style = {
   gap: "1rem",
   borderRadius: "0.25rem",
 };
+
 
 const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
   const VisuallyHiddenInput = styled("input")({
