@@ -91,7 +91,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
           updateDoc(tracksRef, { audioFiles: arrayUnion(downloadUrl) });
           fetchData();
           handleCloseModal();
-        }
+        },
       );
     }
   };
@@ -112,7 +112,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
     return (
       <>
         <Box id="box" sx={style}>
-          <h3 className="text-xl mb-2">Upload your tracks</h3>
+          <h3 className="mb-2 text-xl">Upload your tracks</h3>
           <FilePreview />
           <Button className="w-full" component="label" variant="outlined">
             Add files
