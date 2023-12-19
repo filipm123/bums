@@ -52,7 +52,7 @@ const SideBar = () => {
       sx={{ width: "50%", maxWidth: 300, bgcolor: "#08070B"}}
       component="nav"
       aria-labelledby="nested-list-subheader"
-      className="border-2 border-solid border-black bg-black"
+      className="fixed border-2 border-solid border-black bg-black"
     >
       <AddProjectForm fetchData={fetchData} />
 

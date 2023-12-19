@@ -1,9 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import '@fontsource/noto-sans/300.css';
-import '@fontsource/noto-sans/400.css';
-import '@fontsource/noto-sans/500.css';
-import '@fontsource/noto-sans/700.css';
+import "@fontsource/noto-sans/300.css";
+import "@fontsource/noto-sans/400.css";
+import "@fontsource/noto-sans/500.css";
+import "@fontsource/noto-sans/700.css";
 import Header from "./components/Header";
 import Player from "./components/Player";
 import { ThemeProvider } from "@mui/material/styles";

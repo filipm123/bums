@@ -19,12 +19,12 @@ export default function ProjectPage({ params }) {
     return (
       <>
         {matches ? (
-          <div className="flex flex-grow">
+          <div className="mt-[64.8px] flex flex-grow">
             <SideBar />
             <Project />
           </div>
         ) : (
-          <div className="flex flex-grow">
+          <div className="mt-[64.8px] flex flex-grow">
             <Project />
             <SwipeableEdgeDrawer />
           </div>

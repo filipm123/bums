@@ -20,14 +20,14 @@ export default function TrackPage({ params }) {
     return (
       <>
         {matches ? (
-          <div className="flex flex-grow">
+          <div className="mt-[64.8px] flex flex-grow">
             <SideBar />
             <Track />
           </div>
         ) : (
-          <div className="flex flex-col flex-grow">
+          <div className="mt-[112.8px] flex flex-grow flex-col">
             <Track />
-            <SwipeableEdgeDrawer/>
+            <SwipeableEdgeDrawer />
           </div>
         )}
       </>

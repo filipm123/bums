@@ -83,7 +83,7 @@ const Track = () => {
     );
   } else {
     return (
-      <div className="flex flex-grow flex-col items-center justify-center p-8">
+      <div className="flex flex-grow flex-col items-center justify-center p-8 lg:ml-[300px]">
         {data.map((track) => (
           <div
             key={track}

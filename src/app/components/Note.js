@@ -84,7 +84,7 @@ const Note = ({ id }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form className="flex w-full flex-col overflow-auto rounded bg-white p-4">
+          <form className="flex w-full flex-col rounded bg-white p-4">
             <textarea
               spellCheck="false"
               cols="10"
@@ -125,7 +125,7 @@ const Note = ({ id }) => {
           </div>
         ))}{" "}
       </div>
-      <Button className="w-full" variant="outlined" onClick={handleOpen}>
+      <Button sx={{zIndex:-1}} className="w-full" variant="outlined" onClick={handleOpen}>
         <AddRoundedIcon />
       </Button>
     </div>

@@ -55,7 +55,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
     whiteSpace: "nowrap",
     width: 1,
   });
-
+  const [duration, setDuration] = useState(null)
   const [files, setFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const metadata = { contentType: "audio/wav" };
@@ -67,6 +67,9 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
       const fileRef = ref(storage, `${projectid}/${file.name}`);
       const uploadTask = uploadBytesResumable(fileRef, file, metadata);
 
+
+
+      
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -88,8 +91,8 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
         async () => {
           const downloadUrl = await getDownloadURL(fileRef);
           const tracksRef = doc(db, "tracks", id);
-
-          updateDoc(tracksRef, { audioFiles: arrayUnion(downloadUrl) });
+          
+          updateDoc(tracksRef, { audioFiles: arrayUnion(downloadUrl), trackDuration:duration});
           fetchData();
           handleCloseModal();
         },
