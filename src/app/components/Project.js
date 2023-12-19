@@ -156,7 +156,7 @@ const Project = () => {
                 <div className="text-3xl font-bold lg:mt-24">
                   <p className="text-sm font-light text-stone-500">album</p>
                   {item.title}
-                  <p className="mt-4 font-normal">{item.author}</p>
+                  <p className="mt-4 text-xl font-thin">{item.author}</p>
                 </div>
               </div>
               <span className="mr-2">
