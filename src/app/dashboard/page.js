@@ -8,26 +8,31 @@ import SwipeableEdgeDrawer from "../components/MobileBottomDrawer";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SideBar from "../components/SideBar";
+import Header from "../components/Header";
 export default function DashboardPage() {
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   const theme = useTheme();
-  const matches = useMediaQuery(
-    theme.breakpoints.up("sm") && theme.breakpoints.up("md"),
-  );
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   if (currentUser != null) {
     return (
       <>
         {matches ? (
-          <div className="mt-[64.8px] flex flex-grow">
-            <SideBar />
-            <Dashboard />
-          </div>
+          <>
+            <Header />
+            <div className="mt-[64.8px] flex flex-grow">
+              <SideBar />
+              <Dashboard />
+            </div>
+          </>
         ) : (
-          <div>
-            <Dashboard />
-            <SwipeableEdgeDrawer />
-          </div>
+          <>
+            <Header />
+            <div>
+              <Dashboard />
+              <SwipeableEdgeDrawer />
+            </div>
+          </>
         )}
       </>
     );

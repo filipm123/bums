@@ -9,7 +9,7 @@ import { UserContext } from "@/app/Context/UserContext";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SwipeableEdgeDrawer from "@/app/components/MobileBottomDrawer";
-
+import Header from "@/app/components/Header";
 export default function ProjectPage({ params }) {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
@@ -19,15 +19,21 @@ export default function ProjectPage({ params }) {
     return (
       <>
         {matches ? (
-          <div className="mt-[64.8px] flex flex-grow">
-            <SideBar />
-            <Project />
-          </div>
+          <>
+            <Header />
+            <div className="mt-[64.8px] flex flex-grow">
+              <SideBar />
+              <Project />
+            </div>
+          </>
         ) : (
-          <div className="mt-[64.8px] flex flex-grow">
-            <Project />
-            <SwipeableEdgeDrawer />
-          </div>
+          <>
+            <Header />
+            <div className="mt-[64.8px] flex flex-grow">
+              <Project />
+              <SwipeableEdgeDrawer />
+            </div>
+          </>
         )}
       </>
     );

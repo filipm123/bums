@@ -21,7 +21,7 @@ const Header = () => {
     router.push("/");
   };
   return (
-    <header className="fixed w-full border-b-[1px] border-br bg-black p-4 z-auto">
+    <header className="fixed w-full border-b-[1px] border-br bg-black p-4 z-1">
       <nav className="flex items-center justify-between">
         <div className="flex gap-12">
           <Link href="/">

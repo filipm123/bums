@@ -10,27 +10,32 @@ import { UserContext } from "@/app/Context/UserContext";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SwipeableEdgeDrawer from "@/app/components/MobileBottomDrawer";
+import Header from "@/app/components/Header";
 
 export default function TrackPage({ params }) {
   const theme = useTheme();
-  const matches = useMediaQuery(
-    theme.breakpoints.up("sm")
-  );
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   if (currentUser != null) {
     return (
       <>
         {matches ? (
-          <div className="mt-[64.8px] flex flex-grow">
-            <SideBar />
-            <Track />
-          </div>
+          <>
+            <Header />
+            <div className="mt-[64.8px] flex flex-grow">
+              <SideBar />
+              <Track />
+            </div>
+          </>
         ) : (
-          <div className="mt-[112.8px] flex flex-grow flex-col">
-            <Track />
-            <SwipeableEdgeDrawer />
-          </div>
+          <>
+            <Header />
+            <div className="mt-[112.8px] flex flex-grow flex-col">
+              <Track />
+              <SwipeableEdgeDrawer />
+            </div>
+          </>
         )}
       </>
     );

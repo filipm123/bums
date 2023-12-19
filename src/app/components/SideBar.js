@@ -49,10 +49,10 @@ const SideBar = () => {
 
   return (
     <List
-      sx={{ width: "80%", maxWidth: 300, bgcolor: "#08070B" }}
+      sx={{ width: "100%", maxWidth: 300, bgcolor: "#08070B" }}
       component="nav"
       aria-labelledby="nested-list-subheader"
-      className="lg:fixed border-2 border-solid border-black bg-black"
+      className="border-2 border-solid border-black bg-black lg:fixed"
     >
       <AddProjectForm fetchData={fetchData} />
 
