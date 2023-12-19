@@ -13,7 +13,9 @@ import SwipeableEdgeDrawer from "@/app/components/MobileBottomDrawer";
 
 export default function TrackPage({ params }) {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(
+    theme.breakpoints.up("sm")
+  );
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   if (currentUser != null) {

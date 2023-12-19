@@ -49,7 +49,7 @@ const SideBar = () => {
 
   return (
     <List
-      sx={{ width: "50%", maxWidth: 300, bgcolor: "#08070B"}}
+      sx={{ width: "50%", maxWidth: 300, bgcolor: "#08070B" }}
       component="nav"
       aria-labelledby="nested-list-subheader"
       className="fixed border-2 border-solid border-black bg-black"
@@ -60,7 +60,11 @@ const SideBar = () => {
         <ListItemIcon>
           <FolderRoundedIcon />
         </ListItemIcon>
-        <ListItemText className='text-sm' primary="Projects" disableTypography/>
+        <ListItemText
+          className="text-sm"
+          primary="Projects"
+          disableTypography
+        />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -78,7 +82,11 @@ const SideBar = () => {
               <ListItemIcon>
                 <AlbumIcon />
               </ListItemIcon>
-              <ListItemText className='text-sm' primary={item.title} disableTypography/>
+              <ListItemText
+                className="text-sm"
+                primary={item.title}
+                disableTypography
+              />
             </ListItemButton>
           ))}
         </List>

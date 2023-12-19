@@ -12,12 +12,14 @@ export default function DashboardPage() {
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(
+    theme.breakpoints.up("sm") && theme.breakpoints.up("md"),
+  );
   if (currentUser != null) {
     return (
       <>
         {matches ? (
-          <div className="flex flex-grow">
+          <div className="mt-[64.8px] flex flex-grow">
             <SideBar />
             <Dashboard />
           </div>
