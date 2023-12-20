@@ -87,7 +87,7 @@ const Track = () => {
         {data.map((track) => (
           <div
             key={track}
-            className="flex min-h-[1000px] w-[100%] flex-col gap-12 rounded-xl border-[1px] border-br p-8"
+            className="flex w-[100%] flex-col gap-12 rounded-xl border-[1px] border-br p-8"
           >
             <div className="flex w-full items-center justify-between">
               <Modal
