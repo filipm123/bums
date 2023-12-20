@@ -21,8 +21,10 @@ import Player from "./Player";
 import { db } from "../../../firebase";
 import { doc, deleteDoc } from "firebase/firestore";
 import TrackMenu from "./TrackMenu";
-
+import { useTrack } from "../Context/TracksContext";
+import { usePlayer } from "../Context/PlayerContext";
 const Track = () => {
+  const { track, initializePlayer } = usePlayer();
   const [url, setUrl] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => setOpenModal(true);
@@ -133,7 +135,7 @@ const Track = () => {
                 {track.audioFiles &&
                   track.audioFiles.map((file) => (
                     <div
-                      onClick={() => setUrl(file)}
+                      onClick={initializePlayer}
                       key={file}
                       className="mb-2 flex w-full cursor-grab items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
                     >
@@ -153,7 +155,6 @@ const Track = () => {
                 <div></div>
               </div>
             </div>
-            <Player url={url} />
           </div>
         ))}
       </div>

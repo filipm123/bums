@@ -13,13 +13,10 @@ import PasswordChecklist from "react-password-checklist";
 import { useRouter } from "next/navigation";
 const auth = getAuth();
 const style = {
- 
-  width: 400,
   bgcolor: "black",
-  border: "1px solid white",
   borderRadius: 2,
   boxShadow: 24,
-  p: 1,
+
 };
 const SignUp = () => {
   const router = useRouter();
@@ -49,11 +46,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-grow p-16 flex-col items-center justify-center">
+    <div className="flex flex-grow flex-col items-center justify-center p-16">
       <form onSubmit={handleRegister}>
         <Card sx={style} variant="outlined">
-          <div className="flex  flex-col w-112 gap-4 p-10">
-            <strong className="text-2xl mb-4 text-center">
+          <div className="w-112  flex flex-col gap-4 p-10">
+            <strong className="mb-4 text-center text-2xl">
               Create your account
             </strong>
             <TextField
@@ -112,7 +109,7 @@ const SignUp = () => {
               Create account
             </Button>
           </div>
-          <div className="text-center pb-6 ">
+          <div className="pb-6 text-center ">
             Already have an account?
             <Link href="/signin">
               <div className="underline">Sign in</div>

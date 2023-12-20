@@ -12,13 +12,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 const auth = getAuth();
 const style = {
- 
-  width: 400,
-  bgcolor: 'black',
-  border: "1px solid white",
+  bgcolor: "black",
   borderRadius: 2,
   boxShadow: 24,
-  p: 1,
 };
 
 const SignIn = () => {
@@ -43,8 +39,8 @@ const SignIn = () => {
     <div className="flex flex-grow flex-col items-center justify-center">
       <form onSubmit={handleSignIn}>
         <Card sx={style} variant="outlined">
-          <div className="flex  flex-col w-112 gap-4 p-10">
-            <strong className="text-2xl mb-4 text-center">Sign in</strong>
+          <div className="w-112  flex flex-col gap-4 p-10">
+            <strong className="mb-4 text-center text-2xl">Sign in</strong>
             <TextField
               onChange={(e) => setEmail(e.target.value)}
               id="outlined-basic"
@@ -72,7 +68,7 @@ const SignIn = () => {
               Sign in
             </Button>
           </div>
-          <div className="text-center pb-12 ">
+          <div className="pb-12 text-center ">
             Don't have an account?
             <Link href="/signup">
               <div className="underline">Sign up</div>

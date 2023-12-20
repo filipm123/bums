@@ -52,7 +52,6 @@ const Note = ({ id }) => {
         ...doc.data(),
       }));
       setData(data);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -112,7 +111,10 @@ const Note = ({ id }) => {
 
       <div className="mt-2 flex flex-wrap gap-2">
         {data.map((note) => (
-          <div className="mb-4 flex min-h-[200px] w-[320px] flex-col rounded bg-white p-4 text-black">
+          <div
+            key={note.id}
+            className="mb-4 flex min-h-[200px] w-[320px] flex-col rounded bg-white p-4 text-black"
+          >
             <p className="flex-grow">{note.content}</p>
             <Button
               sx={{ color: "red", borderColor: "red" }}
@@ -125,7 +127,12 @@ const Note = ({ id }) => {
           </div>
         ))}{" "}
       </div>
-      <Button sx={{zIndex:-1}} className="w-full" variant="outlined" onClick={handleOpen}>
+      <Button
+        sx={{ zIndex: -1 }}
+        className="w-full"
+        variant="outlined"
+        onClick={handleOpen}
+      >
         <AddRoundedIcon />
       </Button>
     </div>
