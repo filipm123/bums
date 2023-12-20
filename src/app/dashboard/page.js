@@ -14,7 +14,8 @@ export default function DashboardPage() {
   const { currentUser } = useContext(UserContext);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  if (currentUser != null) {
+  
+  if (currentUser) {
     return (
       <>
         {matches ? (

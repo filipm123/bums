@@ -1,3 +1,4 @@
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "@fontsource/noto-sans/300.css";
@@ -11,15 +12,11 @@ import { AuthProvider } from "./Context/UserContext";
 import { TrackProvider } from "./Context/TracksContext";
 import { PlayerProvider } from "./Context/PlayerContext";
 
+import React, { useEffect, useState, useContext } from "react";
 import Script from "next/script";
 import * as THREE from "three";
 import Player from "./components/Player";
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata = {
-  title: "Bums",
-  description: "Easy way to manage your projects",
-};
 
 export default function RootLayout({ children }) {
   return (
@@ -30,7 +27,7 @@ export default function RootLayout({ children }) {
             <html className="flex flex-col" lang="en">
               <body className={`${inter.className}`}>
                 {children}
-                <Player />
+                
               </body>
             </html>
           </PlayerProvider>
