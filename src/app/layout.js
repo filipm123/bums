@@ -11,7 +11,7 @@ import theme from "./theme";
 import { AuthProvider } from "./Context/UserContext";
 import { TrackProvider } from "./Context/TracksContext";
 import { PlayerProvider } from "./Context/PlayerContext";
-
+import { UserContext } from "./Context/UserContext";
 import React, { useEffect, useState, useContext } from "react";
 import Script from "next/script";
 import * as THREE from "three";
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
             <html className="flex flex-col" lang="en">
               <body className={`${inter.className}`}>
                 {children}
-                
+                <Player />
               </body>
             </html>
           </PlayerProvider>

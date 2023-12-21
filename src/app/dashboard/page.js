@@ -9,12 +9,13 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 export default function DashboardPage() {
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  
+
   if (currentUser) {
     return (
       <>
@@ -38,5 +39,5 @@ export default function DashboardPage() {
       </>
     );
   }
-  return <SignIn />;
+  return <Loading />;
 }

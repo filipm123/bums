@@ -40,7 +40,45 @@ const SignIn = () => {
   };
   return (
     <div className="flex flex-grow flex-col items-center justify-center">
-      
+      <form onSubmit={handleSignIn}>
+        <Card sx={style} variant="outlined">
+          <div className="w-112  flex flex-col gap-4 p-10">
+            <strong className="mb-4 text-center text-2xl">Sign in</strong>
+            <TextField
+              onChange={(e) => setEmail(e.target.value)}
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              size="small"
+              required
+            />
+            <TextField
+              onChange={(e) => setPassword(e.target.value)}
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              type="password"
+              size="small"
+              required
+            />
+            <Button
+              type="submit"
+              disableElevation
+              color="primary"
+              variant="outlined"
+              size="large"
+            >
+              Sign in
+            </Button>
+          </div>
+          <div className="pb-12 text-center ">
+            Don't have an account?
+            <Link href="/signup">
+              <div className="underline">Sign up</div>
+            </Link>
+          </div>
+        </Card>
+      </form>
     </div>
   );
 };

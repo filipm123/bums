@@ -10,6 +10,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SwipeableEdgeDrawer from "@/app/components/MobileBottomDrawer";
 import Header from "@/app/components/Header";
+import Loading from "@/app/components/Loading";
 export default function ProjectPage({ params }) {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
@@ -38,5 +39,5 @@ export default function ProjectPage({ params }) {
       </>
     );
   }
-  return <SignIn />;
+  return <Loading />;
 }

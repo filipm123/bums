@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import DOTS from "vanta/src/vanta.dots";
-
+import anime from "animejs/lib/anime.es.js";
 export default function Home() {
   useEffect(() => {
     DOTS({
@@ -20,6 +20,12 @@ export default function Home() {
       backgroundColor: 0x000000,
       showLines: false,
     });
+    anime({
+      targets: "#fade",
+      opacity: [0, 1],
+      duration: 4000,
+      easing: "easeInOutExpo",
+    });
   }, []);
   return (
     <div
@@ -27,11 +33,11 @@ export default function Home() {
       className="flex flex-grow flex-col items-center justify-center gap-12 overflow-hidden text-center text-5xl"
     >
       <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" />
-      <div className="px-4 text-base xl:text-4xl">
+      <div id='fade' className="px-4 text-base xl:text-4xl">
         <strong>BUMS: </strong> an easy way to manage your wip albums!
       </div>
       <Link href="/dashboard">
-        <Button variant="outlined" size="large">
+        <Button id='fade' variant="outlined" size="large">
           Get started
         </Button>
       </Link>

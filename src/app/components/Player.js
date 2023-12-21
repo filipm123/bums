@@ -59,7 +59,7 @@ const Player = ({ url }) => {
   return (
     <div>
       {matches ? (
-        <footer className=" fixed bottom-0 right-0 w-full border-t-[1px] border-br bg-black p-4">
+        <footer>
           {playingTrack ? (
             <AudioPlayer
               customAdditionalControls={[]}

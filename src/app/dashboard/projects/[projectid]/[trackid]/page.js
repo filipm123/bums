@@ -11,6 +11,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SwipeableEdgeDrawer from "@/app/components/MobileBottomDrawer";
 import Header from "@/app/components/Header";
+import Loading from "@/app/components/Loading";
 
 export default function TrackPage({ params }) {
   const theme = useTheme();
@@ -40,5 +41,5 @@ export default function TrackPage({ params }) {
       </>
     );
   }
-  return <SignIn />;
+  return <Loading />;
 }
