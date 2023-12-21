@@ -11,10 +11,8 @@ import theme from "./theme";
 import { AuthProvider } from "./Context/UserContext";
 import { TrackProvider } from "./Context/TracksContext";
 import { PlayerProvider } from "./Context/PlayerContext";
-import { UserContext } from "./Context/UserContext";
 import React, { useEffect, useState, useContext } from "react";
-import Script from "next/script";
-import * as THREE from "three";
+
 import Player from "./components/Player";
 const inter = Inter({ subsets: ["latin"] });
 

@@ -85,11 +85,11 @@ const Track = () => {
     );
   } else {
     return (
-      <div className="flex flex-grow flex-col items-center justify-center p-8 lg:ml-[300px]">
+      <div className="flex flex-grow flex-col items-center justify-center bg-black  p-8 lg:ml-[300px]">
         {data.map((track) => (
           <div
             key={track}
-            className="flex w-[100%] flex-col gap-12 rounded-xl border-[1px] border-br p-8"
+            className="border-neutral-500 flex w-[100%] flex-col gap-12 rounded-xl  border-[1px] bg-black p-8"
           >
             <div className="flex w-full items-center justify-between">
               <Modal
