@@ -41,5 +41,5 @@ export default function TrackPage({ params }) {
       </>
     );
   }
-  return <SignIn />;
+  return <Loading />;
 }

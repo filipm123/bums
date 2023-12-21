@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { UserContext } from "../Context/UserContext";
 import { useContext } from "react";
 const auth = getAuth();
-const style = {
+const styleSign = {
   bgcolor: "black",
   borderRadius: 2,
   boxShadow: 24,
@@ -41,7 +41,7 @@ const SignIn = () => {
   return (
     <div className="flex flex-grow flex-col items-center justify-center">
       <form onSubmit={handleSignIn}>
-        <Card sx={style} variant="outlined">
+        <Card sx={styleSign} variant="outlined">
           <div className="w-112  flex flex-col gap-4 p-10">
             <strong className="mb-4 text-center text-2xl">Sign in</strong>
             <TextField

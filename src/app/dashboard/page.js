@@ -39,5 +39,5 @@ export default function DashboardPage() {
       </>
     );
   }
-  return <SignIn />;
+  return <Loading/>;
 }
