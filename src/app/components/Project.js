@@ -122,7 +122,7 @@ const Project = () => {
     );
   } else {
     return (
-      <div className="w-full bg-black p-10 lg:ml-[330px] ">
+      <div className="mb-[64px] h-full w-full bg-black p-10 lg:ml-[330px]">
         {data.map((item) => (
           <div key={item.id}>
             <div className="flex w-full justify-between gap-6">

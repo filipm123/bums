@@ -12,6 +12,7 @@ const theme = createTheme({
     mode: "dark", // Enable dark mode
     primary: {
       main: "#ffffff",
+      secondary:"#ffffff"
     },
   },
 });

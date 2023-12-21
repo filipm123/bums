@@ -89,7 +89,7 @@ const Track = () => {
         {data.map((track) => (
           <div
             key={track}
-            className="border-neutral-500 flex w-[100%] flex-col gap-12 rounded-xl  border-[1px] bg-black p-8"
+            className="flex h-[100%] w-[100%] flex-col gap-12 rounded-xl border-[1px]  border-neutral-500 bg-black p-8"
           >
             <div className="flex w-full items-center justify-between">
               <Modal
@@ -129,6 +129,7 @@ const Track = () => {
               <div className="flex flex-col p-6">
                 <p className="font-light text-neutral-400">notes</p>
                 <Note data={data.notes} id={id} />
+                <Button variant="outlined"> + </Button>
               </div>
               <div className="flex w-full flex-col justify-between p-6">
                 <p className="mb-2 font-light text-neutral-400">files</p>

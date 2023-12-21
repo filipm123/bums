@@ -32,7 +32,7 @@ export default function TrackPage({ params }) {
         ) : (
           <>
             <Header />
-            <div className="mt-[112.8px] flex flex-grow flex-col">
+            <div className=" flex flex-grow flex-col ">
               <Track />
               <SwipeableEdgeDrawer />
             </div>

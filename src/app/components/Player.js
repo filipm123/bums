@@ -59,7 +59,7 @@ const Player = ({ url }) => {
   return (
     <div>
       {matches ? (
-        <footer className=" fixed bottom-[0px] right-0 w-full border-t-[1px] border-br bg-black">
+        <footer className="fixed bottom-[0px] right-0 w-full border-t-[1px] border-br">
           {playingTrack ? (
             <AudioPlayer
               customAdditionalControls={[]}
@@ -84,7 +84,7 @@ const Player = ({ url }) => {
           )}
         </footer>
       ) : (
-        <div className=" fixed right-0 top-[64px] w-full border-t-[1px] border-br bg-black">
+        <div className=" fixed right-0 top-[64px] w-full border-br bg-white">
           {playingTrack ? (
             <Accordion onChange={handleChange("panel1")}>
               <AccordionSummary
@@ -93,7 +93,7 @@ const Player = ({ url }) => {
               >
                 <Typography>Player</Typography>
               </AccordionSummary>
-              <MuiAccordionDetails sx={{ backgroundColor: "black" }}>
+              <MuiAccordionDetails sx={{ backgroundColor: "white" }}>
                 <AudioPlayer
                   customAdditionalControls={[]}
                   footer

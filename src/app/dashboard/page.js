@@ -30,7 +30,7 @@ export default function DashboardPage() {
         ) : (
           <>
             <Header />
-            <div>
+            <div className='bg-black'>
               <Dashboard />
               <SwipeableEdgeDrawer />
             </div>
@@ -39,5 +39,5 @@ export default function DashboardPage() {
       </>
     );
   }
-  return <Loading/>;
+  return <Loading />;
 }

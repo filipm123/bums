@@ -23,7 +23,7 @@
 }
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255,255,255;
   --background-end-rgb: 255, 255, 255;
 }
 
@@ -42,7 +42,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #000000;
+  background-color: black !important;
 }
 /*LOADING ICON*/
 .lds-ellipsis {
@@ -101,43 +101,4 @@ body {
   }
 }
 
-.rhap_container {
-  background-color: black;
-  height: 80px;
-}
 
-.rhap_progress-bar {
-  box-sizing: border-box;
-  position: relative;
-  z-index: 0;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-  border-radius: 2px;
-}
-.rhap_progress-indicator {
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 3;
-  width: 15px;
-  height: 15px;
-  margin-left: -10px;
-  top: -6px;
-  background: white;
-  border-radius: 50px;
-  box-shadow: fade(white, (0.5 * 100)) 0 0 5px;
-}
-.rhap_time {
-  color: white;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.rhap_main-controls-button {
-  margin: 0 3px;
-  color: white;
-  font-size: 35px;
-  width: 35px;
-  height: 35px;
-}

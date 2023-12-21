@@ -15,8 +15,12 @@ import { UserContext } from "../Context/UserContext";
 import { collection, query, getDocs, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 import AddProjectForm from "./AddProjectForm";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@emotion/react";
 
 const SideBar = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const [open, setOpen] = useState(true);
   const [data, setData] = useState([]);
   const { currentUser } = useContext(UserContext);
@@ -48,49 +52,97 @@ const SideBar = () => {
   }, []);
 
   return (
-    <List
-      sx={{ width: "100%", maxWidth: 300, position:'fixed' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-    >
-      <AddProjectForm fetchData={fetchData} />
+    <>
+      {matches ? (
+        <List
+          sx={{ width: "100%", maxWidth: 300, position:'fixed' }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+        >
+          <AddProjectForm fetchData={fetchData} />
 
-      <ListItemButton onClick={handleClick} disableRipple>
-        <ListItemIcon>
-          <FolderRoundedIcon />
-        </ListItemIcon>
-        <ListItemText
-          className="text-sm"
-          primary="Projects"
-          disableTypography
-        />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {data.map((item) => (
-            <ListItemButton
-              onClick={() =>
-                router.push(`/dashboard/projects/${item.id}`, {
-                  shallow: true,
-                })
-              }
-              sx={{ pl: 4 }}
-              key={item}
-            >
-              <ListItemIcon>
-                <AlbumIcon />
-              </ListItemIcon>
-              <ListItemText
-                className="text-sm"
-                primary={item.title}
-                disableTypography
-              />
-            </ListItemButton>
-          ))}
+          <ListItemButton onClick={handleClick} disableRipple>
+            <ListItemIcon>
+              <FolderRoundedIcon />
+            </ListItemIcon>
+            <ListItemText
+              className="text-sm"
+              primary="Projects"
+              disableTypography
+            />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {data.map((item) => (
+                <ListItemButton
+                  onClick={() =>
+                    router.push(`/dashboard/projects/${item.id}`, {
+                      shallow: true,
+                    })
+                  }
+                  sx={{ pl: 4 }}
+                  key={item}
+                >
+                  <ListItemIcon>
+                    <AlbumIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    className="text-sm"
+                    primary={item.title}
+                    disableTypography
+                  />
+                </ListItemButton>
+              ))}
+            </List>
+          </Collapse>
         </List>
-      </Collapse>
-    </List>
+      ) : (
+        <List
+          sx={{ width: "100%", maxWidth: 300 }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+        >
+          <AddProjectForm fetchData={fetchData} />
+
+          <ListItemButton onClick={handleClick} disableRipple>
+            <ListItemIcon>
+              <FolderRoundedIcon />
+            </ListItemIcon>
+            <ListItemText
+              className="text-sm"
+              primary="Projects"
+              disableTypography
+            />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {data.map((item) => (
+                <ListItemButton
+                  onClick={() =>
+                    router.push(`/dashboard/projects/${item.id}`, {
+                      shallow: true,
+                    })
+                  }
+                  sx={{ pl: 4 }}
+                  key={item}
+                >
+                  <ListItemIcon>
+                    <AlbumIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    className="text-sm"
+                    primary={item.title}
+                    disableTypography
+                  />
+                </ListItemButton>
+              ))}
+            </List>
+          </Collapse>
+        </List>
+      )}
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ export default function ProjectPage({ params }) {
         {matches ? (
           <>
             <Header />
-            <div className="mt-[64.8px] flex flex-grow">
+            <div className="my-[64.8px] flex flex-grow">
               <SideBar />
               <Project />
             </div>
@@ -30,7 +30,7 @@ export default function ProjectPage({ params }) {
         ) : (
           <>
             <Header />
-            <div className="mt-[64.8px] flex flex-grow">
+            <div className="my-[88px] flex flex-grow">
               <Project />
               <SwipeableEdgeDrawer />
             </div>
