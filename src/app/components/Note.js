@@ -127,12 +127,7 @@ const Note = ({ id }) => {
           </div>
         ))}{" "}
       </div>
-      <Button
-        sx={{ zIndex: -1 }}
-        className="w-full"
-        variant="outlined"
-        onClick={handleOpen}
-      >
+      <Button className="w-full" variant="outlined" onClick={handleOpen}>
         <AddRoundedIcon />
       </Button>
     </div>
