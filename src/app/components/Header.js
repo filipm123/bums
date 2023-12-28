@@ -21,7 +21,7 @@ const Header = () => {
     router.push("/");
   };
   return (
-    <header className="z-1 fixed w-full border-b-[1px] border-br bg-black p-4">
+    <header className="z-40 fixed w-full border-b-[1px] border-br bg-black p-4">
       <nav className="flex items-center justify-between">
         <div className="flex gap-12">
           <strong className="text-2xl">BUMS</strong>
