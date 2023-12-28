@@ -101,7 +101,7 @@ const Note = ({ id }) => {
               variant="outlined"
               onClick={handleSubmit}
             >
-              <AddRoundedIcon className="text-md" />
+              <AddRoundedIcon sx={{ height: "18px", width: "18px" }} />
               add note
             </Button>
             <div></div>
@@ -122,13 +122,13 @@ const Note = ({ id }) => {
               onClick={() => handleDelete(note.id)}
               className="w-4"
             >
-              <DeleteRoundedIcon />
+              <DeleteRoundedIcon sx={{ height: "18px", width: "18px" }} />
             </Button>
           </div>
         ))}{" "}
       </div>
       <Button className="w-full" variant="outlined" onClick={handleOpen}>
-        <AddRoundedIcon />
+        <AddRoundedIcon sx={{ height: "18px", width: "18px" }} />
       </Button>
     </div>
   );

@@ -6,7 +6,7 @@ const Dashboard = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
-    <div className="flex flex-grow">
+    <div id='fade-in' className="flex flex-grow">
       {matches ? (
         <div className="flex flex-grow items-center justify-center">
           <p className="text-4xl">Pick a project or create one!</p>

@@ -16,7 +16,6 @@ const style = {
   bgcolor: "black",
   borderRadius: 2,
   boxShadow: 24,
-
 };
 const SignUp = () => {
   const router = useRouter();
@@ -34,6 +33,7 @@ const SignUp = () => {
         const auth = getAuth();
         updateProfile(auth.currentUser, {
           displayName: username,
+          photoUrl: "",
         }).then(() => {
           router.push("/dashboard");
         });

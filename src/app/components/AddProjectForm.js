@@ -95,7 +95,7 @@ const AddProjectForm = ({ fetchData }) => {
               type="submit"
               variant="outlined"
             >
-              Add project
+              + Add project
             </Button>
           </Box>
         </form>

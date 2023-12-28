@@ -59,9 +59,10 @@ const Player = ({ url }) => {
   return (
     <div>
       {matches ? (
-        <footer className="fixed bottom-[0px] right-0 w-full border-t-[1px] border-br">
+        <footer id='fade-in' className="fixed bottom-[0px] right-0 w-full border-t-[1px] border-br">
           {playingTrack ? (
             <AudioPlayer
+              autoPlay
               customAdditionalControls={[]}
               footer
               layout="stacked-reverse"
@@ -84,19 +85,19 @@ const Player = ({ url }) => {
           )}
         </footer>
       ) : (
-        <div className=" fixed right-0 top-[64px] w-full border-br bg-white">
+        <div id='fade-in' className=" fixed right-0 top-[64px] w-full">
           {playingTrack ? (
-            <Accordion onChange={handleChange("panel1")}>
+            <Accordion defaultExpanded="true" onChange={handleChange("panel1")}>
               <AccordionSummary
                 aria-controls="panel1d-content"
                 id="panel1d-header"
               >
                 <Typography>Player</Typography>
               </AccordionSummary>
-              <MuiAccordionDetails sx={{ backgroundColor: "white" }}>
+              <MuiAccordionDetails sx={{ backgroundColor: "black" }}>
                 <AudioPlayer
+                  autoPlay
                   customAdditionalControls={[]}
-                  footer
                   layout="stacked-reverse"
                   src={playingTrack}
                   onPlay={(e) => console.log("onPlay")}

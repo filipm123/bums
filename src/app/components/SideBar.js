@@ -8,6 +8,7 @@ import Collapse from "@mui/material/Collapse";
 import AlbumIcon from "@mui/icons-material/Album";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import Avatar from "@mui/material/Avatar";
 import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
@@ -55,7 +56,7 @@ const SideBar = () => {
     <>
       {matches ? (
         <List
-          sx={{ width: "100%", maxWidth: 300, position:'fixed' }}
+          sx={{ width: "100%", maxWidth: 300, position: "fixed" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
         >
@@ -85,7 +86,13 @@ const SideBar = () => {
                   key={item}
                 >
                   <ListItemIcon>
-                    <AlbumIcon />
+                    <Avatar
+                      sx={{ width: 28, height: 28, bgcolor:"white" }}
+                      alt={item.title}
+                      src={item.cover}
+                    >
+                      <AlbumIcon />
+                    </Avatar>
                   </ListItemIcon>
                   <ListItemText
                     className="text-sm"
@@ -129,7 +136,14 @@ const SideBar = () => {
                   key={item}
                 >
                   <ListItemIcon>
-                    <AlbumIcon />
+                    <Avatar
+                      sx={{ width: 28, height: 28 }}
+                      alt={item.title}
+                      src={item.cover}
+                    >
+                      B
+                    </Avatar>
+                    {/*<AlbumIcon />*/}
                   </ListItemIcon>
                   <ListItemText
                     className="text-sm"

@@ -7,6 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Divider } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Menu from "@mui/material/Menu";
@@ -23,9 +24,27 @@ import { doc, deleteDoc } from "firebase/firestore";
 import TrackMenu from "./TrackMenu";
 import { useTrack } from "../Context/TracksContext";
 import { usePlayer } from "../Context/PlayerContext";
+import FileInfo from "./FileInfo";
+
 const Track = () => {
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "80vw",
+    bgcolor: "black",
+    border: "1px solid #242424",
+    borderRadius: 2,
+    boxShadow: 24,
+    p: 4,
+    borderRadius: "0.25rem",
+  };
   const { track, initializePlayer } = usePlayer();
   const [url, setUrl] = useState("");
+  const [openInfo, setOpenInfo] = useState(false);
+  const handleOpenInfo = () => setOpenInfo(true);
+  const handleCloseInfo = () => setOpenInfo(false);
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
@@ -85,7 +104,7 @@ const Track = () => {
     );
   } else {
     return (
-      <div className="flex flex-grow flex-col items-center justify-center bg-black  p-8 lg:ml-[300px]">
+      <div id='fade-in' className="flex flex-grow flex-col items-center justify-center bg-black lg:ml-[300px]">
         {data.map((track) => (
           <div
             key={track}
@@ -137,14 +156,29 @@ const Track = () => {
                     <div
                       onClick={initializePlayer}
                       key={file}
-                      className="mb-2 flex w-full cursor-grab items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
+                      className="mb-2 flex w-full items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
                     >
                       <p>
                         {file.match(regexPattern)
                           ? decodeURIComponent(file.match(regexPattern)[1])
                           : file}
                       </p>
-                      <PlayArrowIcon />
+                      <div className="hidden  hover:flex">
+                        <PlayArrowIcon />
+                      </div>
+                      <div>
+                        <Button onClick={handleOpenInfo}><MoreHorizIcon/></Button>
+                        <Modal
+                          open={openInfo}
+                          onClose={handleCloseInfo}
+                          aria-labelledby="modal-modal-title"
+                          aria-describedby="modal-modal-description"
+                        >
+                          <Box sx={style}>
+                            <FileInfo url={file} />
+                          </Box>
+                        </Modal>
+                      </div>
                     </div>
                   ))}
                 <div></div>

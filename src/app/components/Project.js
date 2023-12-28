@@ -35,12 +35,13 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "#08070B",
-  border: "1px solid #545363",
+  width: "80vw",
+  bgcolor: "black",
+  border: "1px solid #242424",
   borderRadius: 2,
   boxShadow: 24,
   p: 4,
+  borderRadius: "0.25rem",
 };
 
 const Project = () => {
@@ -122,7 +123,10 @@ const Project = () => {
     );
   } else {
     return (
-      <div className="mb-[64px] h-full w-full bg-black p-10 lg:ml-[330px]">
+      <div
+        id="fade-in"
+        className="mb-[64px] h-full w-full bg-black p-10 lg:ml-[330px]"
+      >
         {data.map((item) => (
           <div key={item.id}>
             <div className="flex w-full justify-between gap-6">
@@ -211,11 +215,7 @@ const Project = () => {
                 </Button>
                 <Button
                   sx={{
-                    borderColor: "#545363",
-                    color: "#545363",
-                    ":hover": {
-                      borderColor: "#8785AF",
-                    },
+                    marginLeft: 1,
                   }}
                   onClick={handleDeleteClose}
                   variant="outlined"
