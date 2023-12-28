@@ -5,7 +5,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import LogoutIcon from "@mui/icons-material/Logout";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
+import { UserContext } from "../Context/UserContext";
+import { useContext } from "react";
+import { Avatar } from "@mui/material";
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -42,7 +44,7 @@ const StyledMenu = styled((props) => (
       "&:active": {
         backgroundColor: alpha(
           theme.palette.primary.main,
-          theme.palette.action.selectedOpacity
+          theme.palette.action.selectedOpacity,
         ),
       },
     },
@@ -50,6 +52,7 @@ const StyledMenu = styled((props) => (
 }));
 
 const OptionsMenu = ({ handleLogout }) => {
+  const { currentUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -70,9 +73,10 @@ const OptionsMenu = ({ handleLogout }) => {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
-        className='text-sm'
+        className="text-sm"
       >
-        Account
+        <Avatar sx={{ bgcolor: '#1bfdf8', width:'28px',height:'28px', marginRight:2 }} />
+        {currentUser.displayName}
       </Button>
       <StyledMenu
         id="demo-customized-menu"

@@ -65,9 +65,9 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
     );
   } else {
     return (
-      <div id='fade-in' className="flex flex-col gap-3 p-2">
+      <div className="flex flex-col gap-3 p-2">
         <Button variant="outlined" onClick={handleOpen}>
-          <AddIcon sx={{height:'18px', width:'18px'}} /> Add tracks
+          <AddIcon sx={{ height: "18px", width: "18px" }} /> Add tracks
         </Button>
         <Modal
           open={open}
@@ -91,7 +91,7 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
                 })
               }
               key={track.id}
-              className="cursor-grab flex justify-between w-full rounded border-[1px] hover:border-white transition-colors  border-br p-2 text-sm items-center"
+              className="flex w-full cursor-grab items-center justify-between rounded border-[1px] border-br  p-2 text-sm transition-colors hover:border-white"
             >
               <p>{track.trackName}</p>
               <ChevronRightIcon />
