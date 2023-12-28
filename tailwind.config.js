@@ -11,6 +11,7 @@ module.exports = {
         bg: "black",
         br: "#242424",
       },
+      display: ["group-hover"],
     },
   },
   plugins: [],

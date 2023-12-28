@@ -70,6 +70,16 @@ body {
   flex-direction: column;
   background-color: black !important;
 }
+
+#cover-placeholder {
+  background: rgb(118, 72, 186);
+  background: linear-gradient(
+    186deg,
+    rgba(118, 72, 186, 1) 6%,
+    rgba(18, 2, 149, 1) 100%
+  );
+}
+
 /*LOADING ICON*/
 .lds-ellipsis {
   display: inline-block;

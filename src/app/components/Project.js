@@ -133,7 +133,26 @@ const Project = () => {
               <div className="gap-4 lg:flex">
                 <div>
                   {item.cover ? (
-                    <img className="h-48 w-48 rounded" src={item.cover} />
+                    <FileUploader
+                      handleChange={handleCoverChange}
+                      name="file"
+                      types={fileTypes}
+                      children={
+                        <>
+                          <div className="group cursor-grab ">
+                            <img
+                              className="h-48 w-48 rounded hover:opacity-50 transition-opacity "
+                              src={item.cover}
+                            />
+
+                            <div className="absolute top-[160px] hidden h-8 w-48 rounded-b bg-black text-center text-sm opacity-80 transition-opacity hover:opacity-50 group-hover:block"></div>
+                            <div className="absolute left-[36px] top-[165px] hidden text-sm group-hover:block">
+                              Change cover art
+                            </div>
+                          </div>
+                        </>
+                      }
+                    />
                   ) : (
                     <FileUploader
                       handleChange={handleCoverChange}
@@ -141,14 +160,14 @@ const Project = () => {
                       types={fileTypes}
                       children={
                         <>
-                          <div>
-                            <img
-                              className="mb-2 h-48 w-48 object-scale-down"
-                              src={item.cover}
-                            />
+                          <div className="group">
+                            <div
+                              className="mb-2 h-48 w-48 cursor-grab rounded-2xl object-scale-down transition-opacity hover:opacity-50"
+                              id="cover-placeholder"
+                            ></div>
 
-                            <div className="absolute left-[30px] top-[80px] text-sm underline">
-                              Drag and drop your artwork here
+                            <div className="absolute left-[38px] top-[160px] hidden text-sm  transition-opacity hover:opacity-50 group-hover:block">
+                              Change cover art
                             </div>
                           </div>
                         </>
