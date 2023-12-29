@@ -5,12 +5,14 @@ import { useTrack } from "../Context/TracksContext";
 const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
+
   const { trackData } = useTrack();
-  const [selectedTrack, setSelectedTrack] = useState(0);
+
   const [playingTrack, setPlayingTrack] = useState("");
-  const initializePlayer = () => {
+  
+  const initializePlayer = (prop) => {
     setPlayingTrack(
-      trackData[selectedTrack] && trackData[selectedTrack].audioFiles[0],
+      prop
     );
     console.log(playingTrack);
   };

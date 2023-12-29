@@ -7,7 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Divider } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Menu from "@mui/material/Menu";
@@ -24,6 +24,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import TrackMenu from "./TrackMenu";
 import { useTrack } from "../Context/TracksContext";
 import { usePlayer } from "../Context/PlayerContext";
+
 import FileInfo from "./FileInfo";
 
 const Track = () => {
@@ -104,7 +105,10 @@ const Track = () => {
     );
   } else {
     return (
-      <div id='fade-in' className="flex flex-grow flex-col items-center justify-center bg-black lg:ml-[300px]">
+      <div
+        id="fade-in"
+        className="flex flex-grow flex-col items-center justify-center bg-black lg:ml-[300px]"
+      >
         {data.map((track) => (
           <div
             key={track}
@@ -154,8 +158,8 @@ const Track = () => {
                 {track.audioFiles &&
                   track.audioFiles.map((file) => (
                     <div
-                      onClick={initializePlayer}
-                      key={file}
+                      onClick={() => initializePlayer(file)}
+                      key={file.id}
                       className="mb-2 flex w-full items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
                     >
                       <p>
@@ -163,11 +167,13 @@ const Track = () => {
                           ? decodeURIComponent(file.match(regexPattern)[1])
                           : file}
                       </p>
-                      <div className="hidden  hover:flex">
+                      <div className="hidden hover:flex">
                         <PlayArrowIcon />
                       </div>
                       <div>
-                        <Button onClick={handleOpenInfo}><MoreHorizIcon/></Button>
+                        <Button onClick={handleOpenInfo}>
+                          <MoreHorizIcon />
+                        </Button>
                         <Modal
                           open={openInfo}
                           onClose={handleCloseInfo}

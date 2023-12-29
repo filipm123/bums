@@ -62,7 +62,7 @@ const Player = ({ url }) => {
         <footer id='fade-in' className="fixed bottom-[0px] right-0 w-full border-t-[1px] border-br">
           {playingTrack ? (
             <AudioPlayer
-              autoPlay
+            autoPlay
               customAdditionalControls={[]}
               footer
               layout="stacked-reverse"
