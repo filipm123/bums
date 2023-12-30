@@ -1,6 +1,7 @@
 "use client";
-import AudioPlayer from "react-h5-audio-player";
+import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import ReactPlayer from "react-player";
 import React from "react";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import FastForwardRoundedIcon from "@mui/icons-material/FastForwardRounded";
@@ -59,16 +60,19 @@ const Player = ({ url }) => {
   return (
     <div>
       {matches ? (
-        <footer id='fade-in' className="fixed bottom-[0px] right-0 w-full border-t-[1px] border-br">
+        <footer
+          id="fade-in"
+          className="fixed bottom-[0px] right-0 w-full border-t-[1px] border-br"
+        >
           {playingTrack ? (
             <AudioPlayer
-            autoPlay
+              style={{ display: "flex", color: "white", background: "black" }}
+              autoPlay
               customAdditionalControls={[]}
               footer
               layout="stacked-reverse"
               src={playingTrack}
               onPlay={(e) => console.log("onPlay")}
-              onEnded={() => setCurrentTrack((i) => i + 1)}
               customIcons={{
                 play: <PlayArrowRoundedIcon />,
                 pause: <PauseRoundedIcon />,
@@ -85,7 +89,7 @@ const Player = ({ url }) => {
           )}
         </footer>
       ) : (
-        <div id='fade-in' className=" fixed right-0 top-[64px] w-full">
+        <div id="fade-in" className=" fixed right-0 top-[64px] w-full">
           {playingTrack ? (
             <Accordion defaultExpanded="true" onChange={handleChange("panel1")}>
               <AccordionSummary
@@ -96,6 +100,7 @@ const Player = ({ url }) => {
               </AccordionSummary>
               <MuiAccordionDetails sx={{ backgroundColor: "black" }}>
                 <AudioPlayer
+                  style={{ color: "white", background: "black" }}
                   autoPlay
                   customAdditionalControls={[]}
                   layout="stacked-reverse"

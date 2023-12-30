@@ -13,20 +13,6 @@
     opacity: 100;
   }
 }
-.rhap_container {
-  background-color: black;
-}
-.rhap_time,
-.rhap_main-controls-button,
-.rhap_volume-button,
-.rhap_volume-indicator {
-  color: white;
-}
-
-.rhap_progress-filled,
-.rhap_progress-indicator {
-  background-color: white;
-}
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -78,6 +64,15 @@ body {
     rgba(118, 72, 186, 1) 6%,
     rgba(18, 2, 149, 1) 100%
   );
+}
+#rhap_current-time {
+  color: white !important;
+}
+.rhap_time{
+  color:white !important;
+}
+.rhap_main-controls-button {
+  color:white !important;
 }
 
 /*LOADING ICON*/

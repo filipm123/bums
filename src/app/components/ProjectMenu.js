@@ -4,7 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ClearIcon from "@mui/icons-material/Clear";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -80,6 +80,10 @@ const ProjectMenu = ({ handleDeleteOpen }) => {
         open={open}
         onClose={handleClose}
       >
+        <MenuItem onClick={handleDeleteOpen} disableRipple>
+          <PersonAddIcon />
+          Invite a collaborator
+        </MenuItem>
         <MenuItem onClick={handleDeleteOpen} disableRipple>
           <ClearIcon />
           Delete project

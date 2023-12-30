@@ -29,7 +29,7 @@ import TrackList from "./TrackList";
 import Divider from "@mui/material/Divider";
 import { UserContext } from "../Context/UserContext";
 import ProjectMenu from "./ProjectMenu";
-
+import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRenameOutlineRounded";
 const style = {
   position: "absolute",
   top: "50%",
@@ -109,6 +109,7 @@ const Project = () => {
     handleDeleteClose();
     router.push("/dashboard");
   };
+  const handleAddCollaborator = async () => {};
 
   if (loading) {
     return (
@@ -141,7 +142,7 @@ const Project = () => {
                         <>
                           <div className="group cursor-grab ">
                             <img
-                              className="h-48 w-48 rounded hover:opacity-50 transition-opacity "
+                              className="h-48 w-48 rounded transition-opacity hover:opacity-50 "
                               src={item.cover}
                             />
 
@@ -176,9 +177,15 @@ const Project = () => {
                   )}
                 </div>
 
-                <div className="text-3xl font-bold lg:mt-24">
+                <div className="group text-3xl font-bold lg:mt-24">
                   <p className="text-sm font-light text-stone-500">album</p>
-                  {item.title}
+                  <div className="flex gap-2 ">
+                    {item.title}
+                    <div className=" hidden transition-opacity hover:opacity-50 group-hover:block cursor-grab">
+                      <DriveFileRenameOutlineRoundedIcon />
+                    </div>
+                  </div>
+
                   <p className="mt-4 text-xl font-thin">{item.author}</p>
                 </div>
               </div>

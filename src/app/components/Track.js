@@ -153,16 +153,16 @@ const Track = () => {
                 <p className="font-light text-neutral-400">notes</p>
                 <Note data={data.notes} id={id} />
               </div>
-              <div className="flex w-full flex-col justify-between p-6">
+              <div className="mb-[93px] flex w-full flex-col justify-between p-6">
                 <p className="mb-2 font-light text-neutral-400">files</p>
                 {track.audioFiles &&
                   track.audioFiles.map((file) => (
                     <div
                       onClick={() => initializePlayer(file)}
                       key={file.id}
-                      className="mb-2 flex w-full items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
+                      className="overflow-auto  mb-2 flex w-full items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
                     >
-                      <p>
+                      <p> 
                         {file.match(regexPattern)
                           ? decodeURIComponent(file.match(regexPattern)[1])
                           : file}
