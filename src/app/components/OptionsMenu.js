@@ -5,6 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import LogoutIcon from "@mui/icons-material/Logout";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { UserContext } from "../Context/UserContext";
 import { useContext } from "react";
 import { Avatar } from "@mui/material";
@@ -75,7 +76,14 @@ const OptionsMenu = ({ handleLogout }) => {
         endIcon={<KeyboardArrowDownIcon />}
         className="text-sm"
       >
-        <Avatar sx={{ bgcolor: '#1bfdf8', width:'28px',height:'28px', marginRight:2 }} />
+        <Avatar
+          sx={{
+            bgcolor: "#1bfdf8",
+            width: "28px",
+            height: "28px",
+            marginRight: 2,
+          }}
+        />
         {currentUser.displayName}
       </Button>
       <StyledMenu
@@ -87,6 +95,10 @@ const OptionsMenu = ({ handleLogout }) => {
         open={open}
         onClose={handleClose}
       >
+        <MenuItem>
+          <ManageAccountsIcon/>
+          Account Settings
+        </MenuItem>
         <MenuItem onClick={handleLogout} disableRipple>
           <LogoutIcon />
           Logout

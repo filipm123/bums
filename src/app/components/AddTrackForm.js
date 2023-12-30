@@ -9,6 +9,7 @@ import {
   updateDoc,
   arrayUnion,
   collection,
+  serverTimestamp 
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 
@@ -18,7 +19,6 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80vw",
   bgcolor: "black",
   border: "1px solid #242424",
   borderRadius: 2,
@@ -46,6 +46,7 @@ const AddTracks = ({ fetchTrackListData, id, handleClose, currentUser }) => {
         projectId: id,
         owner: currentUser.uid,
         notes: [],
+        dateCreated:serverTimestamp()
       });
 
       fetchTrackListData();
@@ -61,15 +62,15 @@ const AddTracks = ({ fetchTrackListData, id, handleClose, currentUser }) => {
           <h3 className="mb-2 text-xl">Add a track</h3>
           <TextField
             id="outlined-basic"
+            size='small'
             label="Track name"
-            F
             variant="outlined"
             className="w-full"
             onChange={(e) => setTrackTitle(e.target.value)}
             required
           />
-          <Button type="submit" className="w-full" variant="outlined">
-            Add
+          <Button type="submit" className="w-full" variant="contained">
+           + Add
           </Button>
         </Box>
       </form>

@@ -88,7 +88,7 @@ const Player = ({ url }) => {
           )}
         </footer>
       ) : (
-        <div id="fade-in" className=" fixed right-0 top-[64px] w-full">
+        <div id="fade-in" className="p-4 fixed right-0 top-[64px] w-full">
           {playingTrack ? (
             <Accordion defaultExpanded="true" onChange={handleChange("panel1")}>
               <AccordionSummary

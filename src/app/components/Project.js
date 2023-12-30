@@ -20,6 +20,10 @@ import { db } from "../../../firebase";
 import { useEffect, useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import Typography from "@mui/material/Typography";
 import { useParams } from "next/navigation";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -35,7 +39,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80vw",
+
   bgcolor: "black",
   border: "1px solid #242424",
   borderRadius: 2,
@@ -56,12 +60,31 @@ const Project = () => {
 
   const [addOpen, setAddOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [rightClickMenu, setRightClickMenu] = useState(null);
 
   const handleDeleteOpen = () => setDeleteOpen(true);
   const handleDeleteClose = () => setDeleteOpen(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
 
+  const handleRightClickMenu = (event) => {
+    event.preventDefault();
+    setRightClickMenu(
+      rightClickMenu === null
+        ? {
+            mouseX: event.clientX + 2,
+            mouseY: event.clientY - 6,
+          }
+        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
+          // Other native context menus might behave different.
+          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+          null,
+    );
+  };
+
+  const handleClose = () => {
+    setRightClickMenu(null);
+  };
   const fetchData = async () => {
     try {
       const projectsRef = query(collection(db, "projects"));
@@ -126,11 +149,24 @@ const Project = () => {
     return (
       <div
         id="fade-in"
-        className="mb-[64px] h-full w-full bg-black p-10 lg:ml-[330px]"
+        className="mb-[64px] min-h-full w-full bg-black p-10 lg:ml-[330px]"
+        onContextMenu={handleRightClickMenu}
       >
+        <Menu
+          open={rightClickMenu !== null}
+          onClose={handleClose}
+          anchorReference="anchorPosition"
+          anchorPosition={
+            rightClickMenu !== null
+              ? { top: rightClickMenu.mouseY, left: rightClickMenu.mouseX }
+              : undefined
+          }
+        >
+          <MenuItem onClick={handleClose}> + Add track</MenuItem>
+        </Menu>
         {data.map((item) => (
           <div key={item.id}>
-            <div className="flex w-full justify-between gap-6">
+            <div className="mt-4 flex w-full justify-between gap-6">
               <div className="gap-4 lg:flex">
                 <div>
                   {item.cover ? (
@@ -181,23 +217,23 @@ const Project = () => {
                   <p className="text-sm font-light text-stone-500">album</p>
                   <div className="flex gap-2 ">
                     {item.title}
-                    <div className=" hidden transition-opacity hover:opacity-50 group-hover:block cursor-grab">
+                    <div className=" hidden cursor-grab transition-opacity hover:opacity-50 group-hover:block">
                       <DriveFileRenameOutlineRoundedIcon />
                     </div>
                   </div>
 
-                  <p className="mt-4 text-xl font-thin">{item.author}</p>
+                  <p className="mt-4 text-xl font-thin">{item.author} </p>
                 </div>
               </div>
               <span className="mr-2">
                 <ProjectMenu handleDeleteOpen={handleDeleteOpen} />
               </span>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
               <div>
-                <div className="flex justify-between gap-2 p-2 text-neutral-600">
-                  <p>track name</p>
-                  <div className="flex gap-5">
+                <div className="mt-4 flex justify-between gap-2 px-2 py-2 text-neutral-600 sm:px-6">
+                  <p>name</p>
+                  <div className="flex gap-6">
                     <div></div>
                     <div></div>
                     <div></div>
@@ -206,6 +242,8 @@ const Project = () => {
                     <div></div>
                     <div></div>
                   </div>
+
+                  <h1 className="mr-31">added</h1>
                 </div>
 
                 <Divider></Divider>
@@ -233,7 +271,7 @@ const Project = () => {
 
                 <Button
                   className="mr-3"
-                  variant="outlined"
+                  variant="contained"
                   color="error"
                   onClick={handleDelete}
                 >
@@ -244,7 +282,7 @@ const Project = () => {
                     marginLeft: 1,
                   }}
                   onClick={handleDeleteClose}
-                  variant="outlined"
+                  variant="contained"
                 >
                   Cancel
                 </Button>

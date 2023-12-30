@@ -17,7 +17,6 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80vw",
   bgcolor: "black",
   border: "1px solid #242424",
   borderRadius: 2,
@@ -76,12 +75,13 @@ const AddProjectForm = ({ fetchData }) => {
       >
         <form onSubmit={addProject}>
           <Box sx={style}>
-            <h1 className="p-4 text-center text-2xl font-bold">Add project</h1>
+            <h1 className="p-4 text-center text-xl font-bold">Add project</h1>
             <TextField
+              size="small"
               id="outlined-basic"
               label="Project name"
               variant="outlined"
-              className="w-full"
+              className="w-full text-sm"
               onChange={(e) => setTitle(e.target.value)}
               required
             />
@@ -91,9 +91,10 @@ const AddProjectForm = ({ fetchData }) => {
                 ":hover": {
                   borderColor: "white",
                 },
+                textTrasnform:'none'
               }}
               type="submit"
-              variant="outlined"
+              variant='contained'
             >
               + Add project
             </Button>

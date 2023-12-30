@@ -2,7 +2,7 @@
 import Box from "@mui/material/Box";
 import { Button, List, ListItem, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useRef } from "react";
 import {
@@ -29,7 +29,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80vw",
+
   bgcolor: "black",
   border: "1px solid #242424",
   borderRadius: 2,
@@ -41,7 +41,6 @@ const style = {
   gap: "1rem",
   borderRadius: "0.25rem",
 };
-
 
 const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
   const VisuallyHiddenInput = styled("input")({
@@ -55,21 +54,17 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
     whiteSpace: "nowrap",
     width: 1,
   });
-  const [duration, setDuration] = useState(null)
+  const [duration, setDuration] = useState(null);
   const [files, setFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const metadata = { contentType: "audio/wav" };
   const storage = getStorage();
 
   const uploadFiles = async () => {
-    const tracks = [];
     for (const file of files) {
       const fileRef = ref(storage, `${projectid}/${file.name}`);
       const uploadTask = uploadBytesResumable(fileRef, file, metadata);
 
-
-
-      
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -91,8 +86,11 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
         async () => {
           const downloadUrl = await getDownloadURL(fileRef);
           const tracksRef = doc(db, "tracks", id);
-          
-          updateDoc(tracksRef, { audioFiles: arrayUnion(downloadUrl), trackDuration:duration});
+
+          updateDoc(tracksRef, {
+            audioFiles: arrayUnion(downloadUrl),
+            trackDuration: duration,
+          });
           fetchData();
           handleCloseModal();
         },
@@ -118,8 +116,8 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
         <Box id="box" sx={style}>
           <h3 className="mb-2 text-xl">Upload your tracks</h3>
           <FilePreview />
-          <Button className="w-full" component="label" variant="outlined">
-            Add files
+          <Button className="w-full" component="label" variant="contained">
+            + Add files
             <VisuallyHiddenInput
               type="file"
               multiple
@@ -131,9 +129,10 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
           <Button
             className="w-full"
             component="label"
-            variant="outlined"
+            variant="contained"
             onClick={uploadFiles}
           >
+            <CloudUploadIcon className='mr-2'/>
             Upload
           </Button>
         </Box>

@@ -154,18 +154,22 @@ const Track = () => {
                 <Note data={data.notes} id={id} />
               </div>
               <div className="mb-[93px] flex w-full flex-col justify-between p-6">
-                <p className="mb-2 font-light text-neutral-400">files</p>
+                <p className="mb-2 flex justify-between font-light text-neutral-400">
+                  <h1>files</h1>
+                </p>
                 {track.audioFiles &&
                   track.audioFiles.map((file) => (
                     <div
                       onClick={() => initializePlayer(file)}
                       key={file.id}
-                      className="overflow-auto  mb-2 flex w-full items-center justify-between rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
+                      className="mb-2 flex w-full items-center justify-between overflow-auto rounded border-br p-2 text-sm transition-colors hover:border-white hover:bg-br"
                     >
-                      <p> 
-                        {file.match(regexPattern)
-                          ? decodeURIComponent(file.match(regexPattern)[1])
-                          : file}
+                      <p className="flex w-full justify-between">
+                        <h1>
+                          {file.match(regexPattern)
+                            ? decodeURIComponent(file.match(regexPattern)[1])
+                            : file}
+                        </h1>
                       </p>
                       <div className="hidden hover:flex">
                         <PlayArrowIcon />

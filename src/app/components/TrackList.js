@@ -65,9 +65,12 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
     );
   } else {
     return (
-      <div className="flex flex-col gap-3 p-2">
-        <Button variant="outlined" onClick={handleOpen}>
-          <AddIcon sx={{ height: "18px", width: "18px" }} /> Add tracks
+      <div className="mt-4 flex flex-col gap-3 ">
+        <Button
+          variant='contained'
+          onClick={handleOpen}
+        >
+          <AddIcon sx={{ height: "18px", width: "18px" }} />
         </Button>
         <Modal
           open={open}
@@ -82,21 +85,27 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
             fetchTrackListData={fetchTrackListData}
           />
         </Modal>
-        {data &&
-          data.map((track) => (
-            <div
-              onClick={() =>
-                router.push(`/dashboard/projects/${id}/${track.id}`, {
-                  shallow: true,
-                })
-              }
-              key={track.id}
-              className="flex w-full cursor-grab items-center justify-between rounded border-[1px] border-br  p-2 text-sm transition-colors hover:border-white"
-            >
-              <p>{track.trackName}</p>
-              <ChevronRightIcon />
-            </div>
-          ))}
+        <ol className="ml-4 list-decimal">
+          {data &&
+            data.map((track) => (
+              <li
+                onClick={() =>
+                  router.push(`/dashboard/projects/${id}/${track.id}`, {
+                    shallow: true,
+                  })
+                }
+                key={track.key}
+              >
+                <div className="mb-2 flex w-full cursor-grab items-center justify-between rounded border-[1px] border-br p-4 text-sm transition-colors hover:border-white">
+                  <h1>{track.trackName}</h1>
+                  <div className='flex items-center'>
+                    <h1 >{track.dateCreated.toDate().toDateString()}</h1>
+                 
+                  </div>
+                </div>
+              </li>
+            ))}
+        </ol>
       </div>
     );
   }
