@@ -56,17 +56,10 @@ const AddProjectForm = ({ fetchData }) => {
 
   return (
     <div>
-      {" "}
-      <ListItemButton onClick={handleOpen} disableRipple>
-        <ListItemIcon>
-          <AddIcon className=" text-neutral-400" />
-        </ListItemIcon>
-        <ListItemText
-          className="text-sm text-neutral-400"
-          primary="Add Project"
-          disableTypography
-        />
-      </ListItemButton>
+     
+      <div className='p-4'>
+      <Button onClick={handleOpen} variant='outlined' className='w-full p-2' >+ Add project</Button>
+      </div>
       <Modal
         open={modalOpen}
         onClose={handleClose}

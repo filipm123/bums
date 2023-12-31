@@ -149,7 +149,7 @@ const Project = () => {
     return (
       <div
         id="fade-in"
-        className="mb-[64px] min-h-full w-full bg-black p-10 lg:ml-[330px]"
+        className="mb-[64px] min-h-full w-full bg-black p-12 lg:ml-[300px]"
         onContextMenu={handleRightClickMenu}
       >
         <Menu
@@ -231,7 +231,7 @@ const Project = () => {
             </div>
             <div className="flex flex-col">
               <div>
-                <div className="mt-4 flex justify-between gap-2 px-2 py-2 text-neutral-600 sm:px-6">
+                <div className="mt-4 flex justify-between gap-2 px-2 py-2 text-neutral-600" >
                   <p>name</p>
                   <div className="flex gap-6">
                     <div></div>

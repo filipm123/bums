@@ -85,7 +85,7 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
             fetchTrackListData={fetchTrackListData}
           />
         </Modal>
-        <ol className="ml-4 list-decimal">
+        <ol>
           {data &&
             data.map((track) => (
               <li
@@ -95,6 +95,7 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
                   })
                 }
                 key={track.key}
+                
               >
                 <div className="mb-2 flex w-full cursor-grab items-center justify-between rounded border-[1px] border-br p-4 text-sm transition-colors hover:border-white">
                   <h1>{track.trackName}</h1>
