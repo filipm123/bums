@@ -57,8 +57,9 @@ body {
   background-color: black !important;
 }
 
-
-
+::placeholder {
+  color:white;
+}
 #cover-placeholder {
   background: rgb(118, 72, 186);
   background: linear-gradient(

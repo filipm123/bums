@@ -1,5 +1,5 @@
 "use client";
-import { Inter } from "next/font/google";
+import { Figtree } from "next/font/google";
 import "./globals.css";
 import "@fontsource/noto-sans/300.css";
 import "@fontsource/noto-sans/400.css";
@@ -8,13 +8,13 @@ import "@fontsource/noto-sans/700.css";
 import Header from "./components/Header";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-import { AuthProvider } from "./Context/UserContext";
+import { AuthProvider } from "./Context/UserContext"; 
 import { TrackProvider } from "./Context/TracksContext";
 import { PlayerProvider } from "./Context/PlayerContext";
 import React, { useEffect, useState, useContext } from "react";
 
 import Player from "./components/Player";
-const inter = Inter({ subsets: ["latin"] });
+const inter = Figtree({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (

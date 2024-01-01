@@ -2,12 +2,19 @@
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { createContext } from "react";
-import { collection, query, getDocs, where } from "firebase/firestore";
+import {
+  collection,
+  query,
+  getDocs,
+  where,
+  updateDoc,
+} from "firebase/firestore";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRenameOutlineRounded";
 import { Divider } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Menu from "@mui/material/Menu";
@@ -92,6 +99,22 @@ const Track = () => {
     });
     handleClose();
   };
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleTitleChange = async (e) => {
+    const newTitle = e.target.value;
+
+    const projectRef = doc(db, "tracks", id);
+    await updateDoc(projectRef, {
+      trackName: newTitle,
+    });
+  };
+
+  const handleEditTitle = () => {
+    setIsEditing(true);
+  };
+
   if (loading) {
     return (
       <div className="flex flex-grow items-center justify-center">
@@ -142,13 +165,40 @@ const Track = () => {
               />
             </div>
             <div>
-              <div className="p-6">
-                <p className="mb-2 font-light text-neutral-400">track name</p>
-                <p className="mb-6 break-words text-2xl font-bold lg:text-4xl">
-                  {track.trackName}
-                </p>
-                <Divider></Divider>
-              </div>
+              {isEditing ? (
+                <div className="p-6">
+                  <p className="mb-2 font-light text-neutral-400">track name</p>
+                  <p className="mb-6 break-words text-2xl font-bold lg:text-4xl">
+                    <div>
+                      <input
+                        type="text"
+                        placeholder={track.trackName}
+                        className="bg-black text-white outline-none"
+                        onChange={handleTitleChange}
+                      />
+                    </div>
+                  </p>
+                  <Divider></Divider>
+                </div>
+              ) : (
+                <div className="p-6">
+                  <p className="mb-2 font-light text-neutral-400">track name</p>
+
+                  <div className="group mb-6 flex gap-2 ">
+                    <p className="break-words text-2xl font-bold lg:text-4xl ">
+                      {track.trackName}{" "}
+                    </p>
+                    <div className="hidden cursor-grab transition-opacity hover:opacity-50 group-hover:block">
+                      <DriveFileRenameOutlineRoundedIcon
+                        onClick={handleEditTitle}
+                        className='mt-3'
+                      />
+                    </div>
+                  </div>
+                  <Divider></Divider>
+                </div>
+              )}
+
               <div className="flex flex-col p-6">
                 <p className="font-light text-neutral-400">notes</p>
                 <Note data={data.notes} id={id} />

@@ -58,7 +58,7 @@ const AddProjectForm = ({ fetchData }) => {
     <div>
      
       <div className='p-4'>
-      <Button onClick={handleOpen} variant='outlined' className='w-full p-2' >+ Add project</Button>
+      <Button onClick={handleOpen} variant='outlined' className='w-full p-2' >+ New project</Button>
       </div>
       <Modal
         open={modalOpen}

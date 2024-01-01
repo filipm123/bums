@@ -96,7 +96,7 @@ const OptionsMenu = ({ handleLogout }) => {
         onClose={handleClose}
       >
         <MenuItem>
-          <ManageAccountsIcon/>
+          <ManageAccountsIcon />
           Account Settings
         </MenuItem>
         <MenuItem onClick={handleLogout} disableRipple>

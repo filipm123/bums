@@ -70,7 +70,7 @@ export default function TrackList({ id, currentUser, handleAddClose }) {
           variant='contained'
           onClick={handleOpen}
         >
-          <AddIcon sx={{ height: "18px", width: "18px" }} />
+          <AddIcon sx={{ height: "18px", width: "18px" }} />Add track
         </Button>
         <Modal
           open={open}

@@ -34,6 +34,8 @@ import Divider from "@mui/material/Divider";
 import { UserContext } from "../Context/UserContext";
 import ProjectMenu from "./ProjectMenu";
 import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRenameOutlineRounded";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -117,6 +119,19 @@ const Project = () => {
       );
       console.log("Cover uploaded");
     });
+  };
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleTitleChange = async (e) => {
+    const newTitle = e.target.value;
+
+    const projectRef = doc(db, "projects", id);
+    await updateDoc(projectRef, {
+      title: newTitle,
+    });
+  };
+  const handleEditTitle = () => {
+    setIsEditing(true);
   };
 
   const handleDelete = async () => {
@@ -212,18 +227,37 @@ const Project = () => {
                     />
                   )}
                 </div>
+                {isEditing ? (
+                  <div className="group text-3xl font-bold lg:mt-24">
+                    <p className="text-sm font-light text-stone-500">album</p>
 
-                <div className="group text-3xl font-bold lg:mt-24">
-                  <p className="text-sm font-light text-stone-500">album</p>
-                  <div className="flex gap-2 ">
-                    {item.title}
-                    <div className=" hidden cursor-grab transition-opacity hover:opacity-50 group-hover:block">
-                      <DriveFileRenameOutlineRoundedIcon />
+                    <div>
+                      <input
+                        type="text"
+                        placeholder={item.title}
+                        className="bg-black text-white outline-none"
+                        onChange={handleTitleChange}
+                      />
                     </div>
-                  </div>
 
-                  <p className="mt-4 text-xl font-thin">{item.author} </p>
-                </div>
+                    <p className="mt-4 text-xl font-thin">{item.author} </p>
+                  </div>
+                ) : (
+                  <div className="group text-3xl font-bold lg:mt-24">
+                    <p className="text-sm font-light text-stone-500">album</p>
+
+                    <div className="flex gap-2 ">
+                      {item.title}
+                      <div className=" hidden cursor-grab transition-opacity hover:opacity-50 group-hover:block">
+                        <DriveFileRenameOutlineRoundedIcon
+                          onClick={handleEditTitle}
+                        />
+                      </div>
+                    </div>
+
+                    <p className="mt-4 text-xl font-thin">{item.author} </p>
+                  </div>
+                )}
               </div>
               <span className="mr-2">
                 <ProjectMenu handleDeleteOpen={handleDeleteOpen} />
@@ -231,7 +265,7 @@ const Project = () => {
             </div>
             <div className="flex flex-col">
               <div>
-                <div className="mt-4 flex justify-between gap-2 px-2 py-2 text-neutral-600" >
+                <div className="mt-4 flex justify-between gap-2 px-2 py-2 text-neutral-600">
                   <p>name</p>
                   <div className="flex gap-6">
                     <div></div>
