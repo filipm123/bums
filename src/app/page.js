@@ -1,9 +1,10 @@
 "use client";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
-import vinyl from '../../assets/vinyl.png'
+import cat from "../app/cat.png";
 import anime from "animejs/lib/anime.es.js";
+import Image from "next/image";
 export default function Home() {
   useEffect(() => {
     anime({
@@ -12,18 +13,15 @@ export default function Home() {
       duration: 4000,
       easing: "easeInOutExpo",
     });
+    console.log(cat);
   }, []);
   return (
-    <div className="flex flex-grow flex-col items-center justify-center gap-12 overflow-hidden text-center text-5xl">
-      <div id="fade" className="px-4 text-base xl:text-4xl">
-        <strong>BUMS: </strong> an easy way to manage your wip albums!
-      </div>
-      <Link href="/dashboard">
-        <Button id="fade" variant="contained" size="large">
-          Get started
-        </Button>
+    <div className="flex flex-grow flex-col items-center justify-center">
+      <strong className="text-6xl">Bums</strong>
+      <h1 className='font-thin'>An easy to way to manage your wip albums.</h1>
+      <Link className="" href="/dashboard">
+        <Image src="/images/vinyl.png" height={500} width={500} alt="cat" />
       </Link>
-      
     </div>
   );
 }

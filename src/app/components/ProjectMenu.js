@@ -1,10 +1,11 @@
 import * as React from "react";
+import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ClearIcon from "@mui/icons-material/Clear";
 import MenuIcon from "@mui/icons-material/Menu";
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -41,14 +42,14 @@ const StyledMenu = styled((props) => (
       "&:active": {
         backgroundColor: alpha(
           theme.palette.primary.main,
-          theme.palette.action.selectedOpacity
+          theme.palette.action.selectedOpacity,
         ),
       },
     },
   },
 }));
 
-const ProjectMenu = ({ handleDeleteOpen }) => {
+const ProjectMenu = ({ handleDeleteOpen, handleInviteOpen }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -80,12 +81,12 @@ const ProjectMenu = ({ handleDeleteOpen }) => {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleDeleteOpen} disableRipple>
+        <MenuItem onClick={handleInviteOpen} disableRipple>
           <PersonAddIcon />
           Invite a collaborator
         </MenuItem>
         <MenuItem onClick={handleDeleteOpen} disableRipple>
-          <ClearIcon />
+          <ClearIcon color="success" />
           Delete project
         </MenuItem>
       </StyledMenu>

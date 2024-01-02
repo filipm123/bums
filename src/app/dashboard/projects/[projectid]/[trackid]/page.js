@@ -15,7 +15,7 @@ import Loading from "@/app/components/Loading";
 
 export default function TrackPage({ params }) {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(theme.breakpoints.up("lg"));
   const auth = getAuth();
   const { currentUser } = useContext(UserContext);
   if (currentUser != null) {

@@ -2,7 +2,7 @@
 import Box from "@mui/material/Box";
 import { Button, List, ListItem, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useRef } from "react";
 import {
@@ -90,8 +90,8 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
           updateDoc(tracksRef, {
             audioFiles: arrayUnion(downloadUrl),
             trackDuration: duration,
-          });
-          fetchData();
+          }).then(fetchData());
+
           handleCloseModal();
         },
       );
@@ -110,6 +110,8 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
     );
   };
 
+  
+
   if (uploadProgress == 0) {
     return (
       <>
@@ -126,13 +128,14 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
               }}
             />
           </Button>
+
           <Button
             className="w-full"
             component="label"
             variant="contained"
             onClick={uploadFiles}
           >
-            <CloudUploadIcon className='mr-2'/>
+            <CloudUploadIcon className="mr-2" />
             Upload
           </Button>
         </Box>
@@ -142,7 +145,7 @@ const FileUpload = ({ handleCloseModal, fetchData, id, projectid }) => {
   return (
     <>
       <Box id="box" sx={style}>
-        <h1>Uploading files...</h1>{" "}
+        <h1>Uploading...</h1>{" "}
         <CircularProgress variant="determinate" value={uploadProgress} />
       </Box>
     </>

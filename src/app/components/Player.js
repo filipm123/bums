@@ -20,6 +20,7 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import { usePlayer } from "../Context/PlayerContext";
+import { useTrack } from "../Context/TracksContext";
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -49,6 +50,7 @@ const AccordionSummary = styled((props) => (
 
 const Player = ({ url }) => {
   const { playingTrack } = usePlayer();
+  const { trackData } = useTrack();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const [expanded, setExpanded] = React.useState("panel1");
@@ -61,34 +63,39 @@ const Player = ({ url }) => {
       {matches ? (
         <footer
           id="fade-in"
-          className="fixed bottom-[0px] right-0 w-full border-t-[1px] border-br"
+          className="fixed bottom-[0px] right-0 w-full border-t-[1px] bg-black border-br"
         >
           {playingTrack ? (
-            <AudioPlayer
-              style={{ display: "flex", color: "white", background: "black" }}
-              autoPlay
-              customAdditionalControls={[]}
-              footer
-              layout="stacked-reverse"
-              src={playingTrack}
-              onPlay={(e) => console.log("onPlay")}
-              customIcons={{
-                play: <PlayArrowRoundedIcon />,
-                pause: <PauseRoundedIcon />,
-                volume: <VolumeDownRoundedIcon />,
-                volumeMute: <VolumeOffRoundedIcon />,
-                rewind: <FastRewindRoundedIcon />,
-                forward: <FastForwardRoundedIcon />,
-                next: <SkipNextRoundedIcon />,
-                previous: <SkipPreviousRoundedIcon />,
-              }}
-            />
+            <div className="flex justify-between">
+              {/*this shit not worky, needs state management*/}
+              <div className="p-4">{trackData.id}</div>
+              <AudioPlayer
+                style={{ width: "50vw", color: "white", background: "black" }}
+                autoPlay
+                customAdditionalControls={[]}
+                footer
+                layout="stacked-reverse"
+                src={playingTrack}
+                onPlay={(e) => console.log("onPlay")}
+                customIcons={{
+                  play: <PlayArrowRoundedIcon />,
+                  pause: <PauseRoundedIcon />,
+                  volume: <VolumeDownRoundedIcon />,
+                  volumeMute: <VolumeOffRoundedIcon />,
+                  rewind: <FastRewindRoundedIcon />,
+                  forward: <FastForwardRoundedIcon />,
+                  next: <SkipNextRoundedIcon />,
+                  previous: <SkipPreviousRoundedIcon />,
+                }}
+              />
+              <div className="p-4">{trackData.id}</div>
+            </div>
           ) : (
             <></>
           )}
         </footer>
       ) : (
-        <div id="fade-in" className="p-4 fixed right-0 top-[64px] w-full">
+        <div id="fade-in" className="fixed right-0 top-[64px] w-full p-4">
           {playingTrack ? (
             <Accordion defaultExpanded="true" onChange={handleChange("panel1")}>
               <AccordionSummary

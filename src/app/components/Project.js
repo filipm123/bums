@@ -1,4 +1,10 @@
 "use client";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../Context/UserContext";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+
+//firebase
 import {
   collection,
   query,
@@ -17,24 +23,26 @@ import {
   listAll,
 } from "firebase/storage";
 import { db } from "../../../firebase";
-import { useEffect, useState, useContext } from "react";
+
+//mui
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Typography from "@mui/material/Typography";
-import { useParams } from "next/navigation";
 import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
+import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRenameOutlineRounded";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import Divider from "@mui/material/Divider";
+
+//components
 import AddTracks from "./AddTrackForm";
 import { FileUploader } from "react-drag-drop-files";
 import TrackList from "./TrackList";
-import Divider from "@mui/material/Divider";
-import { UserContext } from "../Context/UserContext";
 import ProjectMenu from "./ProjectMenu";
-import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRenameOutlineRounded";
-import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import Loading from "./Loading";
+import InviteCollaborator from "./InviteCollaborator";
 
 const style = {
   position: "absolute",
@@ -60,33 +68,20 @@ const Project = () => {
   const [loading, setLoading] = useState(true);
   const fileTypes = ["JPG", "PNG", "GIF"];
 
-  const [addOpen, setAddOpen] = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
   const [rightClickMenu, setRightClickMenu] = useState(null);
 
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const handleDeleteOpen = () => setDeleteOpen(true);
   const handleDeleteClose = () => setDeleteOpen(false);
+
+  const [addOpen, setAddOpen] = useState(false);
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
 
-  const handleRightClickMenu = (event) => {
-    event.preventDefault();
-    setRightClickMenu(
-      rightClickMenu === null
-        ? {
-            mouseX: event.clientX + 2,
-            mouseY: event.clientY - 6,
-          }
-        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
-          // Other native context menus might behave different.
-          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
-          null,
-    );
-  };
+  const [inviteOpen, setInviteOpen] = useState(false);
+  const handleInviteOpen = () => setInviteOpen(true);
+  const handleInviteClose = () => setInviteOpen(false);
 
-  const handleClose = () => {
-    setRightClickMenu(null);
-  };
   const fetchData = async () => {
     try {
       const projectsRef = query(collection(db, "projects"));
@@ -147,38 +142,15 @@ const Project = () => {
     handleDeleteClose();
     router.push("/dashboard");
   };
-  const handleAddCollaborator = async () => {};
 
   if (loading) {
-    return (
-      <div className="flex flex-grow items-center justify-center">
-        <div className="lds-ellipsis">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   } else {
     return (
       <div
         id="fade-in"
         className="mb-[64px] min-h-full w-full bg-black p-12 lg:ml-[300px]"
-        onContextMenu={handleRightClickMenu}
       >
-        <Menu
-          open={rightClickMenu !== null}
-          onClose={handleClose}
-          anchorReference="anchorPosition"
-          anchorPosition={
-            rightClickMenu !== null
-              ? { top: rightClickMenu.mouseY, left: rightClickMenu.mouseX }
-              : undefined
-          }
-        >
-          <MenuItem onClick={handleClose}> + Add track</MenuItem>
-        </Menu>
         {data.map((item) => (
           <div key={item.id}>
             <div className="mt-4 flex w-full justify-between gap-6">
@@ -260,7 +232,7 @@ const Project = () => {
                 )}
               </div>
               <span className="mr-2">
-                <ProjectMenu handleDeleteOpen={handleDeleteOpen} />
+                <ProjectMenu handleDeleteOpen={handleDeleteOpen} handleInviteOpen={handleInviteOpen} />
               </span>
             </div>
             <div className="flex flex-col">
@@ -289,6 +261,7 @@ const Project = () => {
               />
             </div>
 
+            {/*delete project modal*/}
             <Modal
               open={deleteOpen}
               onClose={handleDeleteClose}
@@ -302,26 +275,29 @@ const Project = () => {
                 <p className="mb-8 font-light text-gray-500">
                   This action is not reversible.
                 </p>
-
-                <Button
-                  className="mr-3"
-                  variant="contained"
-                  color="error"
-                  onClick={handleDelete}
-                >
-                  Delete
-                </Button>
-                <Button
-                  sx={{
-                    marginLeft: 1,
-                  }}
-                  onClick={handleDeleteClose}
-                  variant="contained"
-                >
-                  Cancel
-                </Button>
+                <div className="float-right">
+                  <Button
+                    className="mr-3"
+                    variant="contained"
+                    color="error"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </Button>
+                  <Button
+                    sx={{
+                      marginLeft: 1,
+                    }}
+                    onClick={handleDeleteClose}
+                    variant="contained"
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </Box>
             </Modal>
+
+            {/*add tracks modal*/}
             <Modal
               open={addOpen}
               onClose={handleAddClose}
@@ -329,6 +305,16 @@ const Project = () => {
               aria-describedby="modal-modal-description"
             >
               <AddTracks />
+            </Modal>
+
+            {/*add collaborator modal*/}
+            <Modal
+              open={inviteOpen}
+              onClose={handleInviteClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <InviteCollaborator />
             </Modal>
           </div>
         ))}

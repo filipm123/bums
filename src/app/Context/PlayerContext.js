@@ -6,7 +6,6 @@ const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
 
-  const { trackData } = useTrack();
 
   const [playingTrack, setPlayingTrack] = useState("");
   

@@ -128,7 +128,7 @@ const Note = ({ id }) => {
         ))}{" "}
       </div>
       <Button className="w-full" variant="contained" onClick={handleOpen}>
-        <AddRoundedIcon sx={{ height: "18px", width: "18px" }} />
+        <AddRoundedIcon sx={{ height: "18px", width: "18px" }} /> Create note
       </Button>
     </div>
   );
